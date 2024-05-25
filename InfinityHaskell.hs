@@ -7,15 +7,15 @@ import Data.Char (intToDigit)
 
 -- 1)
 data Personaje = Personaje {
-    nombre :: String,
-    poder :: Int,
-    enemigosDerrotados :: [Derrota],
-    equipamientos :: [Equipamiento]
+   nombre :: String,
+   poder :: Int,
+   enemigosDerrotados :: [Derrota],
+   equipamientos :: [Equipamiento]
 } deriving (Show)
 
 data Derrota = Derrota {
-    nombreOponente :: String,
-    anio :: Int
+   nombreOponente :: String,
+   anio :: Int
 }deriving (Show)
 
 
