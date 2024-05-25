@@ -106,3 +106,12 @@ agregarDerrotasExtras = iterate (+1) 2018
 -- guanteleteInfinito :: [Equipamiento] -> Equipamiento
 -- guianteleteInfinito listaEquipamientos unPersonaje = foldl (\x f -> f x) unPersonaje (filter esGemaDelInfinito listaEquipamientos)
 
+-----------
+--Parte C--
+-----------
+
+-- a) Se quedaria procesando si puede usar el escudo o no, ya que necesita calcular la longitud de esa lista infinita, no arrojaria ningun resultado. 
+
+-- b) Cuando encuentre a blackWidow en la lista se va a quedar calculando, ya que busca si alguno de sus oponentes tenga el nombre "Hijo de Thanos", y es una lista infinita se queda buscandolo
+
+-- c) Si, utilizando una funcion que aplique => take 100 (enemigosDerrotados thanos). Esto ocurre ya que el take no necesita analizar toda la lista completa, sino que va a buscar los 100 primeros elementos
