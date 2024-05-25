@@ -1,3 +1,5 @@
+import Text.Show.Functions
+import Data.Char (intToDigit)
 
 -----------
 --Parte A--
@@ -7,7 +9,8 @@
 data Personaje = Personaje {
     nombre :: String,
     poder :: Int,
-    enemigosDerrotados :: [Derrota]
+    enemigosDerrotados :: [Derrota],
+    equipamientos :: [Equipamiento]
 } deriving (Show)
 
 data Derrota = Derrota {
@@ -20,10 +23,10 @@ data Derrota = Derrota {
 
 -- 2)
 entrenamiento :: [Personaje] -> [Personaje]
-entrenamiento unGrupo = map (aumentaPoder.length $ unGrupo) unGrupo
+entrenamiento unGrupo = map (multiplicaPoder.length $ unGrupo) unGrupo
 
-aumentaPoder :: Int -> Personaje -> Personaje
-aumentaPoder unPoder = mapPoder (unPoder *)
+multiplicaPoder :: Int -> Personaje -> Personaje
+multiplicaPoder unPoder = mapPoder (unPoder *)
 
 mapPoder :: (Int -> Int) -> Personaje -> Personaje
 mapPoder f unPersonaje = unPersonaje {poder = f $ poder unPersonaje}
@@ -51,3 +54,55 @@ agregarDerrota unaDerrota = mapDerrota(unaDerrota :)
 
 mapDerrota :: ([Derrota] -> [Derrota]) -> Personaje -> Personaje
 mapDerrota f unPersonaje = unPersonaje {enemigosDerrotados = f $ enemigosDerrotados unPersonaje}
+
+
+-----------
+--Parte B--
+-----------
+-- 1)
+type Equipamiento = Personaje -> Personaje 
+
+
+-- 2)
+escudo :: Equipamiento
+escudo unPersonaje 
+   | (< 5).length.enemigosDerrotados $ unPersonaje = aumentaPoder 50 unPersonaje
+   | otherwise                                     = quitaPoder 100 unPersonaje
+
+aumentaPoder :: Int -> Personaje -> Personaje
+aumentaPoder unPoder = mapPoder (unPoder +)
+
+quitaPoder :: Int -> Personaje -> Personaje
+quitaPoder unPoder = mapPoder (subtract unPoder)
+
+trajeMecanizado :: Int -> Equipamiento
+trajeMecanizado version unPersonaje = unPersonaje {nombre = "Iron " ++ nombre unPersonaje ++ " V" ++ [intToDigit version]}
+
+
+-- 3)
+
+-- a)
+stormBreaker :: Equipamiento
+stormBreaker unPersonaje
+   | nombre unPersonaje == "Thor" = agregaSufijo "dios del trueno" . limpiaHistorialDerrotas $ unPersonaje
+   | otherwise                    = unPersonaje
+
+agregaSufijo :: String -> Personaje -> Personaje
+agregaSufijo sufijo unPersonaje = unPersonaje {nombre = nombre unPersonaje ++ sufijo}
+
+limpiaHistorialDerrotas :: Personaje -> Personaje 
+limpiaHistorialDerrotas unPersonaje = unPersonaje {enemigosDerrotados = []}
+
+
+-- gemaDelAlma :: Equipamiento
+-- gemaDelAlma unPersonaje
+--     | nombre unPersonaje == "Thanos" = agregarDerrotasExtras unPersonaje
+
+
+agregarDerrotasExtras = iterate (+1) 2018
+
+
+-- c)
+-- guanteleteInfinito :: [Equipamiento] -> Equipamiento
+-- guianteleteInfinito listaEquipamientos unPersonaje = foldl (\x f -> f x) unPersonaje (filter esGemaDelInfinito listaEquipamientos)
+
