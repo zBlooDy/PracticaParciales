@@ -27,3 +27,25 @@ mapSalud f unPersonaje = unPersonaje {salud = f $ salud unPersonaje}
 
 causarDanio :: Float -> Personaje -> Personaje
 causarDanio unaSalud = mapSalud (max 0 . subtract unaSalud)
+
+-----------
+--Punto 2--
+-----------
+
+-- a)
+esMalvado :: Personaje -> Bool
+esMalvado unPersonaje = any ((== "Malvado") . tipo) $ elementos unPersonaje
+
+-- b)
+danioQueProduce :: Personaje -> Elemento -> Float
+danioQueProduce unPersonaje unElemento = salud unPersonaje  -  salud (ataque unElemento unPersonaje)
+
+-- Aclaracion de consigna: Te pregunta si lo mata con algun elemento
+
+-- c)
+enemigosMortales :: Personaje -> [Personaje] -> [Personaje]
+enemigosMortales unPersonaje  = filter (loMatanConUnElemento unPersonaje) 
+
+loMatanConUnElemento :: Personaje -> Personaje -> Bool
+loMatanConUnElemento unPersonaje unEnemigo = any ((==0). danioQueProduce unPersonaje) $ elementos unEnemigo
+
