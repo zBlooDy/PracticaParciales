@@ -13,11 +13,9 @@ data Personaje = Personaje {
    equipamientos :: [Equipamiento]
 } deriving (Show)
 
-data Derrota = Derrota {
-   nombreOponente :: String,
-   anio :: Int
-}deriving (Show)
 
+
+type Derrota = (String, Int)
 
 
 
@@ -36,7 +34,7 @@ rivalesDignos :: [Personaje] -> [Personaje]
 rivalesDignos unGrupo = filter esRivalParaThanos (entrenamiento unGrupo)
 
 esRivalParaThanos :: Personaje -> Bool
-esRivalParaThanos unPersonaje = poder unPersonaje > 500 && any ((== "Hijo De Thanos") . nombreOponente) (enemigosDerrotados unPersonaje)
+esRivalParaThanos unPersonaje = poder unPersonaje > 500 && any ((== "Hijo De Thanos") . fst) (enemigosDerrotados unPersonaje)
 
 -- 4)
 
@@ -45,8 +43,8 @@ guerraCivil unAnio = zipWith (peleaDePersonajes unAnio)
 
 peleaDePersonajes :: Int -> Personaje -> Personaje -> Personaje
 peleaDePersonajes anioPelea unPersonaje otroPersonaje
-   | poder unPersonaje > poder otroPersonaje = agregarDerrota (Derrota (nombre otroPersonaje) anioPelea) unPersonaje
-   | otherwise                               = agregarDerrota (Derrota (nombre unPersonaje) anioPelea) otroPersonaje
+   | poder unPersonaje > poder otroPersonaje = agregarDerrota  (nombre otroPersonaje , anioPelea) unPersonaje
+   | otherwise                               = agregarDerrota (nombre unPersonaje , anioPelea) otroPersonaje
 
 
 agregarDerrota :: Derrota -> Personaje -> Personaje
@@ -94,13 +92,16 @@ limpiaHistorialDerrotas :: Personaje -> Personaje
 limpiaHistorialDerrotas unPersonaje = unPersonaje {enemigosDerrotados = []}
 
 
--- gemaDelAlma :: Equipamiento
--- gemaDelAlma unPersonaje
---     | nombre unPersonaje == "Thanos" = agregarDerrotasExtras unPersonaje
+gemaDelAlma :: Int -> Equipamiento
+gemaDelAlma unAnio unPersonaje
+   | nombre unPersonaje == "Thanos" = mapDerrota (derrotasInfinitas unAnio ++) unPersonaje
+   | otherwise                      = unPersonaje
 
 
-agregarDerrotasExtras = iterate (+1) 2018
-
+derrotasInfinitas :: Int-> [Derrota]
+derrotasInfinitas unAnio = zip (map (derrotasExtra unAnio) [1..]) (iterate (+1) unAnio)
+derrotasExtra :: Int -> Int -> String
+derrotasExtra unAnio unNumero = "extra numero " ++ show unNumero
 
 -- c)
 -- guanteleteInfinito :: [Equipamiento] -> Equipamiento
