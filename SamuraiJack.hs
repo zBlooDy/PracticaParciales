@@ -116,3 +116,16 @@ luchar atacante defensor
 
 aplicarElementos :: (Elemento -> Personaje -> Personaje) -> Personaje -> [Elemento] -> Personaje
 aplicarElementos f unPersonaje elementos = foldl (\x f -> f x) unPersonaje (map f elementos)
+
+
+-----------
+--Punto 5--
+-----------
+
+--Inferir el tipo de la siguiente función:
+f x y z
+    | y 0 == z = map (fst.x z)
+    | otherwise = map (snd.x (y 0))
+
+-- f :: (Eq t1, Num t2) =>
+--      (t1 -> a1 -> (a2, a2)) -> (t2 -> t1) -> t1 -> [a1] -> [a2]   ?????
