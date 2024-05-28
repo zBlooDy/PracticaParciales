@@ -49,6 +49,7 @@ enemigosMortales unPersonaje  = filter (loMatanConUnElemento unPersonaje)
 loMatanConUnElemento :: Personaje -> Personaje -> Bool
 loMatanConUnElemento unPersonaje unEnemigo = any ((==0). danioQueProduce unPersonaje) $ elementos unEnemigo
 
+
 -----------
 --Punto 3--
 -----------
@@ -99,3 +100,19 @@ portalFuturo anioParaAku = Elemento {
     ataque = mandarAlAnio (anioParaAku + 2800),
     defensa = aku (anioParaAku + 2800) . salud 
 }
+
+-----------
+--Punto 4--
+-----------
+
+luchar :: Personaje -> Personaje -> (Personaje, Personaje)
+luchar atacante defensor 
+   | loMatanConUnElemento atacante defensor = (defensor, atacante)
+   | otherwise                              = luchar proximoAtacante proximoDefensor
+   where
+    proximoAtacante = aplicarElementos ataque defensor (elementos atacante)
+    proximoDefensor = aplicarElementos defensa atacante (elementos atacante)
+
+
+aplicarElementos :: (Elemento -> Personaje -> Personaje) -> Personaje -> [Elemento] -> Personaje
+aplicarElementos f unPersonaje elementos = foldl (\x f -> f x) unPersonaje (map f elementos)
