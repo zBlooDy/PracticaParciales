@@ -18,8 +18,8 @@ data Personaje = Personaje {
 mandarAlAnio :: Int -> Personaje -> Personaje
 mandarAlAnio unAnio unPersonaje = unPersonaje {anioPresente = unAnio}
 
-meditar :: Float -> Personaje -> Personaje
-meditar unValor  = mapSalud (+ unValor/2)
+meditar ::  Personaje -> Personaje
+meditar unPersonaje  = mapSalud (salud unPersonaje /2 +) unPersonaje
 
 mapSalud :: (Float -> Float) -> Personaje -> Personaje
 mapSalud f unPersonaje = unPersonaje {salud = f $ salud unPersonaje}
@@ -49,3 +49,53 @@ enemigosMortales unPersonaje  = filter (loMatanConUnElemento unPersonaje)
 loMatanConUnElemento :: Personaje -> Personaje -> Bool
 loMatanConUnElemento unPersonaje unEnemigo = any ((==0). danioQueProduce unPersonaje) $ elementos unEnemigo
 
+-----------
+--Punto 3--
+-----------
+concentracion :: Int -> Elemento
+concentracion veces = Elemento {
+    tipo = "Magia",
+    ataque = id,
+    defensa = foldl1 (.) (replicate veces meditar)
+}
+
+
+esbirro :: Elemento 
+esbirro = Elemento {
+    tipo = "Magia",
+    ataque = causarDanio 1,
+    defensa = id
+}
+
+esbirrosMalvados :: Int -> [Elemento]
+esbirrosMalvados cantidad = replicate cantidad esbirro
+
+jack :: Personaje
+jack = Personaje {
+    nombre = "Jack",
+    salud = 300,
+    elementos = [concentracion 3, katanaMagica],
+    anioPresente = 200
+}
+
+katanaMagica :: Elemento
+katanaMagica = Elemento {
+    tipo = "Magia",
+    ataque = causarDanio 1000,
+    defensa = id
+}
+
+aku :: Int -> Float -> Personaje 
+aku unAnio unaSalud = Personaje {
+    nombre = "Aku",
+    salud = unaSalud,
+    elementos = [concentracion 4, portalFuturo unAnio] ++ esbirrosMalvados (100*unAnio),
+    anioPresente = unAnio
+}
+
+portalFuturo :: Int -> Elemento
+portalFuturo anioParaAku = Elemento {
+    tipo = "Magia",
+    ataque = mandarAlAnio (anioParaAku + 2800),
+    defensa = aku (anioParaAku + 2800) . salud 
+}
