@@ -1,10 +1,12 @@
+import Data.Char (toUpper)
+import Text.Show.Functions
 
 data Barbaro = Barbaro {
     nombre :: String,
     fuerza :: Int,
     habilidades :: [Habilidad],
     objetos :: [Objeto]
-}
+} deriving (Show)
 
 type Habilidad = String
 
@@ -41,3 +43,20 @@ ardilla = id
 -- 5)
 cuerda :: Objeto -> Objeto -> Objeto
 cuerda unObjeto otroObjeto = unObjeto . otroObjeto
+
+-----------
+--Punto 2--
+-----------
+
+megafono :: Objeto
+megafono = mapHabilidad (mayusculas . concatenarPlus )
+
+mayusculas :: [String] -> [String]
+mayusculas  = map (map toUpper)
+
+concatenarPlus :: [String] -> [String]
+concatenarPlus lista = [concat lista] 
+
+megafonoBarbarico :: Objeto
+megafonoBarbarico = cuerda ardilla megafono
+
