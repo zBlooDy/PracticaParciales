@@ -61,14 +61,14 @@ data Marea = Fuerte | Moderada | Tranquila deriving(Eq)
 
 paseoEnBarco :: Marea -> Excursion
 paseoEnBarco marea unTurista
-    | marea == Fuerte   = aumentaStress 6 . aumentaCansancio 10 $ unTurista
-    | marea == Moderada = unTurista
-    | otherwise         = salirHablarUnIdioma "Aleman" . apreciarElementoPaisaje "mar" . caminar 10 $ unTurista
+  | marea == Fuerte   = aumentaStress 6 . aumentaCansancio 10 $ unTurista
+  | marea == Moderada = unTurista
+  | otherwise         = salirHablarUnIdioma "Aleman" . apreciarElementoPaisaje "mar" . caminar 10 $ unTurista
 
 
-------------
---Punto 1---
-------------
+-----------
+--Punto 1--
+-----------
 
 ana :: Turista
 ana = Turista 0 21 False ["Espaniol"] 
@@ -80,9 +80,11 @@ cathi :: Turista
 cathi = Turista 15 15 True ["Aleman", "Catalan"]
 
 
-------------
+-----------
 --Punto 2--
-------------
+-----------
+
+type Indice = Turista -> Int
 
 hacerUnaExcursion :: Excursion -> Turista -> Turista
 hacerUnaExcursion unaExcursion unTurista = reduceStress (porcentajeDeStress 10 unTurista) . unaExcursion $ unTurista
@@ -95,7 +97,7 @@ deltaSegun :: (a -> Int) -> a -> a -> Int
 deltaSegun f algo1 algo2 = f algo1 - f algo2
 
 
-deltaExcursionSegun :: (Turista -> Int) -> Excursion -> Turista -> Int
+deltaExcursionSegun :: Indice -> Excursion -> Turista -> Int
 deltaExcursionSegun indice unaExcursion unTurista = deltaSegun indice (hacerUnaExcursion unaExcursion unTurista) unTurista
 
 
@@ -108,3 +110,56 @@ excursionesDesestresantes unTurista = filter (esDesestresantePara unTurista)
 
 esDesestresantePara :: Turista -> Excursion -> Bool
 esDesestresantePara unTurista unaExcursion = (<= (-3)) $ deltaExcursionSegun stress unaExcursion unTurista
+
+-----------
+--Punto 3--
+-----------
+
+type Tour = [Excursion]
+
+
+completo :: Tour
+completo = [caminar 20, apreciarElementoPaisaje "cascada", caminar 40, irALaPlaya, salirHablarUnIdioma "melmacquiano"]
+
+
+ladoB :: Excursion -> Tour
+ladoB excursionElegida =  [paseoEnBarco Tranquila, excursionElegida, caminar 120]
+
+islaVecina :: Marea -> Excursion -> Tour
+islaVecina Fuerte excursion = [paseoEnBarco Fuerte, apreciarElementoPaisaje "lago", excursion, paseoEnBarco Fuerte]
+islaVecina marea excursion = [paseoEnBarco marea, irALaPlaya, excursion, paseoEnBarco marea]
+
+
+
+-- a) 
+
+hacerUnTour :: Tour -> Turista -> Turista
+hacerUnTour unTour unTurista = foldl (\x f -> f x) (aumentaStress (length unTour) unTurista) unTour
+
+-- b)
+
+tourConvincente :: Turista -> [Tour] -> Bool
+tourConvincente unTurista = any (esConvincentePara unTurista) 
+
+esConvincentePara :: Turista -> Tour -> Bool
+esConvincentePara unTurista = any (serConvicente unTurista) 
+
+serConvicente :: Turista -> Excursion -> Bool
+serConvicente unTurista unaExcursion = esDesestresantePara unTurista unaExcursion && viajaAcompaniadoTrasExcursion unTurista unaExcursion
+
+viajaAcompaniadoTrasExcursion :: Turista -> Excursion -> Bool
+viajaAcompaniadoTrasExcursion unTurista unaExcursion = not.viajaSolo $ hacerUnaExcursion unaExcursion unTurista
+
+-- c)
+efectividadDeUnTour :: Tour -> [Turista] -> Int
+efectividadDeUnTour unTour = sum . map (calcularEspiritualidad unTour) . filter (flip esConvincentePara unTour)
+
+
+calcularEspiritualidad :: Tour -> Turista -> Int
+calcularEspiritualidad unTour unTurista = deltaSegun espiritualidad (hacerUnTour unTour unTurista) unTurista
+
+
+espiritualidad :: Turista -> Int
+espiritualidad unTurista = stress unTurista + cansancio unTurista
+
+
