@@ -18,6 +18,9 @@ mapFuerza f unBarbaro = unBarbaro {fuerza = f $ fuerza unBarbaro}
 
 mapHabilidad :: ([Habilidad] -> [Habilidad]) -> Barbaro -> Barbaro
 mapHabilidad f unBarbaro = unBarbaro {habilidades = f $ habilidades unBarbaro}
+
+mapNombre :: (String -> String) -> Barbaro -> Barbaro
+mapNombre f unBarbaro = unBarbaro {nombre = f $ nombre unBarbaro}
 -----------
 --Punto 1--
 -----------
@@ -128,3 +131,31 @@ sobrevivientes listaBarbaros unaAventura = filter (sobrevivenA unaAventura) list
 sobrevivenA :: Aventura -> Barbaro -> Bool
 sobrevivenA unaAventura unBarbaro = all (\evento -> evento unBarbaro) unaAventura
 
+-----------
+--Punto 4--
+-----------
+
+-- A]
+
+sinRepetidos :: (Eq a) => [a] -> [a]
+sinRepetidos [] = []
+sinRepetidos [x] = [x]
+sinRepetidos (x:y:xs) 
+  | x == y    = x : sinRepetidos xs
+  | otherwise = x : sinRepetidos (y:xs)
+
+
+-- B]
+
+descendiente :: Barbaro -> Barbaro
+descendiente = utilizarObjetos . mapNombre (++ "*") . mapHabilidad sinRepetidos
+
+utilizarObjetos :: Barbaro -> Barbaro
+utilizarObjetos unBarbaro = foldr ($) unBarbaro (objetos unBarbaro)
+
+descendientes :: Barbaro -> [Barbaro]
+descendientes  = iterate descendiente 
+
+-- C]
+
+-- Los objetos no se pueden comparar, asi que no se podria aplicar. Sin embargo los nombres si 
