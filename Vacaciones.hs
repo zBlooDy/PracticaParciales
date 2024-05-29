@@ -145,7 +145,7 @@ esConvincentePara :: Turista -> Tour -> Bool
 esConvincentePara unTurista = any (serConvicente unTurista) 
 
 serConvicente :: Turista -> Excursion -> Bool
-serConvicente unTurista unaExcursion = esDesestresantePara unTurista unaExcursion && viajaAcompaniadoTrasExcursion unTurista unaExcursion
+serConvicente unTurista unaExcursion = viajaAcompaniadoTrasExcursion unTurista unaExcursion &&  esDesestresantePara unTurista unaExcursion
 
 viajaAcompaniadoTrasExcursion :: Turista -> Excursion -> Bool
 viajaAcompaniadoTrasExcursion unTurista unaExcursion = not.viajaSolo $ hacerUnaExcursion unaExcursion unTurista
@@ -162,4 +162,19 @@ calcularEspiritualidad unTour unTurista = deltaSegun espiritualidad (hacerUnTour
 espiritualidad :: Turista -> Int
 espiritualidad unTurista = stress unTurista + cansancio unTurista
 
+-----------
+--Punto 4--
+-----------
 
+-- a)
+
+playasInfinitas :: Tour
+playasInfinitas = repeat irALaPlaya
+
+--b )
+
+-- En mi caso se queda evaluando para ambos turistas, y no arroja un resultado
+
+-- c)
+
+-- No, porque va a hacer el sum de una lista infinita y no puede terminar nunca de evaluar.
