@@ -80,4 +80,31 @@ cathi :: Turista
 cathi = Turista 15 15 True ["Aleman", "Catalan"]
 
 
+------------
+--Punto 2--
+------------
 
+hacerUnaExcursion :: Excursion -> Turista -> Turista
+hacerUnaExcursion unaExcursion unTurista = reduceStress (porcentajeDeStress 10 unTurista) . unaExcursion $ unTurista
+
+porcentajeDeStress :: Int -> Turista -> Int
+porcentajeDeStress porcentaje = div porcentaje . stress 
+
+
+deltaSegun :: (a -> Int) -> a -> a -> Int
+deltaSegun f algo1 algo2 = f algo1 - f algo2
+
+
+deltaExcursionSegun :: (Turista -> Int) -> Excursion -> Turista -> Int
+deltaExcursionSegun indice unaExcursion unTurista = deltaSegun indice (hacerUnaExcursion unaExcursion unTurista) unTurista
+
+
+esEducativa :: Excursion -> Turista -> Bool
+esEducativa unaExcursion unTurista= (== 1) $ deltaExcursionSegun (length . idiomas) unaExcursion unTurista
+
+ 
+excursionesDesestresantes :: Turista -> [Excursion] -> [Excursion]
+excursionesDesestresantes unTurista = filter (esDesestresantePara unTurista)
+
+esDesestresantePara :: Turista -> Excursion -> Bool
+esDesestresantePara unTurista unaExcursion = (<= (-3)) $ deltaExcursionSegun stress unaExcursion unTurista
