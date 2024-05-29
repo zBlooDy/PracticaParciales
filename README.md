@@ -9,3 +9,5 @@ Enunciado Casa de Papel: https://www.utnianos.com.ar/foro/attachment.php?aid=202
 Enunciado Samurai Jack: https://docs.google.com/document/d/1mhQ2R8VjpoVrQ5JroYbkiBHjZME9gw6jEn6OI2q6Q2U/edit#heading=h.31aewt8j1c85
 
 Enunciado Vacaciones : https://docs.google.com/document/d/1C_oehBaJYavsacmThRZcrpIpX6axxVOdX19vYusRhlE/edit
+
+Enunciado Tierra de Barbaros : https://docs.google.com/document/d/1mBwfHLXmcZKLHSy22exTxibwny9x2a81hKW000tOFMQ/edit
