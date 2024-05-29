@@ -13,8 +13,8 @@ data Plomero = Plomero {
 
 data Herramienta = Herramienta {
     denominacion :: String,
-    precio :: Float,
-    materialEmpuniadura :: Material
+    materialEmpuniadura :: Material,
+    precio :: Float
 } deriving (Show,Eq)
 
 data Material = Hierro | Madera | Goma | Plastico deriving (Show,Eq)
@@ -50,7 +50,7 @@ mario = Plomero {
 
 wario = Plomero {
     nombre = "Wario",
-    cajaDeHerramientas = repeat llaveFrancesa,
+    cajaDeHerramientas = map (Herramienta "Llave francesa" Hierro) [1..],
     historialReparaciones = [],
     cantidadDinero = 0.5
 }
@@ -68,9 +68,10 @@ puedeComprar unPlomero unaHerramienta = cantidadDinero unPlomero >= precio unaHe
 
 -- PUNTO 3 ======================================================
 
-esBuenaHerramienta (Herramienta _ precio Hierro) = precio >= 10000
-esBuenaHerramienta (Herramienta "Martillo" _ Madera) = True
-esBuenaHerramienta (Herramienta "Martillo" _ Goma) = True
+esBuenaHerramienta :: Herramienta -> Bool
+esBuenaHerramienta (Herramienta _ Hierro precio ) = precio >= 10000
+esBuenaHerramienta (Herramienta "Martillo" Madera _ ) = True
+esBuenaHerramienta (Herramienta "Martillo" Goma _) = True
 esBuenaHerramienta _ = False
 
 -- PUNTO 4 ======================================================
@@ -82,7 +83,7 @@ comprarHerramienta unPlomero unaHerramienta
 
 
 agregaHerramienta :: Herramienta -> Plomero -> Plomero
-agregaHerramienta unaHerramienta  = mapHerramienta ((:) unaHerramienta) 
+agregaHerramienta unaHerramienta  = mapHerramienta (unaHerramienta :) 
 
 mapHerramienta :: ([Herramienta] -> [Herramienta]) -> Plomero -> Plomero
 mapHerramienta f unPlomero = unPlomero {cajaDeHerramientas = f $ cajaDeHerramientas unPlomero}
@@ -136,7 +137,7 @@ agregaReparacion unaReparacion unPlomero = unPlomero {historialReparaciones = un
 
 cambiaHerramientas :: Plomero -> Reparacion -> Plomero
 cambiaHerramientas unPlomero unaReparacion
-    | esMalvado unPlomero     = agregaHerramienta (Herramienta "Destornillador" 0 Plastico) unPlomero
+    | esMalvado unPlomero     = agregaHerramienta (Herramienta "Destornillador" Plastico 0) unPlomero
     | esDificil unaReparacion = mapHerramienta (filter $ not.esBuenaHerramienta) unPlomero
     | otherwise               = mapHerramienta tail' unPlomero
 
