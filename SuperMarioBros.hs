@@ -116,10 +116,13 @@ filtracionAgua = Reparacion {
 
 --b)
 esDificil :: Reparacion -> Bool
-esDificil (Reparacion descripcion _) = length descripcion > 100 && todasMayusculas descripcion
+esDificil unaReparacion = descripcionComplicada unaReparacion && esUnGrito unaReparacion
+
+descripcionComplicada :: Reparacion -> Bool
+descripcionComplicada = (>100) . length . descripcion 
  
-todasMayusculas :: String -> Bool
-todasMayusculas = all isUpper 
+esUnGrito :: Reparacion -> Bool
+esUnGrito = all isUpper . descripcion 
 
 --c) 
 presupuestoReparacion :: Reparacion -> Float
@@ -130,11 +133,18 @@ presupuestoReparacion  = (*3). genericLength . descripcion
 hacerUnaReparacion :: Plomero -> Reparacion -> Plomero
 hacerUnaReparacion unPlomero unaReparacion
     | puedeReparar unaReparacion unPlomero = agregaReparacion unaReparacion . cambiaHerramientas unaReparacion . aumentarDinero (presupuestoReparacion unaReparacion) $ unPlomero 
-    | otherwise = aumentarDinero 100 unPlomero
+    | otherwise                            = aumentarDinero 100 unPlomero
 
 
 puedeReparar :: Reparacion -> Plomero -> Bool
 puedeReparar unaReparacion unPlomero = requerimiento unaReparacion unPlomero || esMalvado unPlomero && tieneHerramienta martillo unPlomero
+
+cambiaHerramientas :: Reparacion -> Plomero -> Plomero
+cambiaHerramientas unaReparacion unPlomero 
+    | esMalvado unPlomero     = agregaHerramienta (Herramienta "Destornillador" Plastico 0) unPlomero
+    | esDificil unaReparacion = mapHerramienta (filter $ not.esBuenaHerramienta) unPlomero
+    | otherwise               = mapHerramienta (drop 1) unPlomero
+
 
 aumentarDinero :: Float -> Plomero -> Plomero
 aumentarDinero unDinero = mapDinero (+ unDinero) 
@@ -142,16 +152,7 @@ aumentarDinero unDinero = mapDinero (+ unDinero)
 agregaReparacion :: Reparacion -> Plomero -> Plomero
 agregaReparacion unaReparacion unPlomero = unPlomero {historialReparaciones = unaReparacion : historialReparaciones unPlomero}
 
-cambiaHerramientas :: Reparacion -> Plomero -> Plomero
-cambiaHerramientas unaReparacion unPlomero 
-    | esMalvado unPlomero     = agregaHerramienta (Herramienta "Destornillador" Plastico 0) unPlomero
-    | esDificil unaReparacion = mapHerramienta (filter $ not.esBuenaHerramienta) unPlomero
-    | otherwise               = mapHerramienta tail' unPlomero
 
-
-tail' :: [a] -> [a]
-tail' [] = []
-tail' (x:xs) = xs
 
 -- PUNTO 7 ======================================================
 
@@ -161,16 +162,19 @@ jornadaDeTrabajo listaReparaciones unPlomero = foldl hacerUnaReparacion unPlomer
 
 -- PUNTO 8 ======================================================
 
-maximumBy :: Ord b => (a -> b) -> [a] -> a
-maximumBy = foldl1 . maxBy
-
-maxBy :: Ord b => (a -> b) -> a -> a -> a
-maxBy f x y
-  | f x > f y = x
-  | otherwise = y
-
 empleadoMas :: (Ord a) => (Plomero -> a) -> [Reparacion] -> [Plomero] -> Plomero
-empleadoMas criterio listaReparaciones =  maximumBy (criterio . jornadaDeTrabajo listaReparaciones)
+empleadoMas criterio listaReparaciones = mayorSegun criterio . aplicarJornadas listaReparaciones
+
+aplicarJornadas :: [Reparacion] -> [Plomero] -> [Plomero]
+aplicarJornadas listaReparaciones = map (jornadaDeTrabajo listaReparaciones) 
+
+mayorSegun :: (Ord a) => (Plomero -> a) -> [Plomero] -> Plomero
+mayorSegun criterio = foldl1 (maximo criterio)                      -- El fold va evaluando de a pares, como no parto de una base uso foldl1
+
+maximo :: (Ord a) => (Plomero -> a) -> Plomero -> Plomero -> Plomero
+maximo criterio plomero1 plomero2 
+  | criterio plomero1 > criterio plomero2 = plomero1
+  | otherwise                             = plomero2
 
 --a)
 empleadoMasReparador :: [Reparacion] -> [Plomero] -> Plomero
