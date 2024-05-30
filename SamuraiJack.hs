@@ -11,6 +11,12 @@ data Personaje = Personaje {
     anioPresente :: Int 
 }
 
+----------
+--Mapeos--
+----------
+
+mapSalud :: (Float -> Float) -> Personaje -> Personaje
+mapSalud f unPersonaje = unPersonaje {salud = f $ salud unPersonaje}
 
 -----------
 --Punto 1--
@@ -19,10 +25,7 @@ mandarAlAnio :: Int -> Personaje -> Personaje
 mandarAlAnio unAnio unPersonaje = unPersonaje {anioPresente = unAnio}
 
 meditar ::  Personaje -> Personaje
-meditar unPersonaje  = mapSalud (salud unPersonaje /2 +) unPersonaje
-
-mapSalud :: (Float -> Float) -> Personaje -> Personaje
-mapSalud f unPersonaje = unPersonaje {salud = f $ salud unPersonaje}
+meditar unPersonaje  = mapSalud ((salud unPersonaje /2) +) unPersonaje
 
 
 causarDanio :: Float -> Personaje -> Personaje
@@ -34,7 +37,7 @@ causarDanio unaSalud = mapSalud (max 0 . subtract unaSalud)
 
 -- a)
 esMalvado :: Personaje -> Bool
-esMalvado unPersonaje = any ((== "Malvado") . tipo) $ elementos unPersonaje
+esMalvado = any ((== "Malvado") . tipo) . elementos 
 
 -- b)
 danioQueProduce :: Personaje -> Elemento -> Float
@@ -47,7 +50,7 @@ enemigosMortales :: Personaje -> [Personaje] -> [Personaje]
 enemigosMortales unPersonaje  = filter (loMatanConUnElemento unPersonaje) 
 
 loMatanConUnElemento :: Personaje -> Personaje -> Bool
-loMatanConUnElemento unPersonaje unEnemigo = any ((==0). danioQueProduce unPersonaje) $ elementos unEnemigo
+loMatanConUnElemento unPersonaje = any ((==0). danioQueProduce unPersonaje) . elementos 
 
 
 -----------
