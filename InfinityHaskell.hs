@@ -64,8 +64,11 @@ type Equipamiento = Personaje -> Personaje
 -- 2)
 escudo :: Equipamiento
 escudo unPersonaje 
-   | (< 5).length.enemigosDerrotados $ unPersonaje = aumentaPoder 50 unPersonaje
-   | otherwise                                     = quitaPoder 100 unPersonaje
+   | tieneSuficientesDerrotas unPersonaje = aumentaPoder 50 unPersonaje
+   | otherwise                            = quitaPoder 100 unPersonaje
+
+tieneSuficientesDerrotas :: Personaje -> Bool
+tieneSuficientesDerrotas = (< 5) . length . enemigosDerrotados
 
 aumentaPoder :: Int -> Personaje -> Personaje
 aumentaPoder unPoder = mapPoder (unPoder +)
