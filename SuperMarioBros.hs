@@ -20,6 +20,16 @@ data Herramienta = Herramienta {
 data Material = Hierro | Madera | Goma | Plastico deriving (Show,Eq)
 
 
+----------
+--Mapeos--
+----------
+
+mapHerramienta :: ([Herramienta] -> [Herramienta]) -> Plomero -> Plomero
+mapHerramienta f unPlomero = unPlomero {cajaDeHerramientas = f $ cajaDeHerramientas unPlomero}
+
+mapDinero :: (Float -> Float) -> Plomero -> Plomero
+mapDinero f unPlomero = unPlomero {cantidadDinero = f $ cantidadDinero unPlomero}
+
 -- PUNTO 1 ======================================================
 
 llaveInglesa = Herramienta {
@@ -58,10 +68,10 @@ wario = Plomero {
 -- PUNTO 2 ======================================================
 
 tieneHerramienta :: Herramienta -> Plomero -> Bool
-tieneHerramienta unaHerramienta unPlomero = elem unaHerramienta $ cajaDeHerramientas unPlomero
+tieneHerramienta unaHerramienta  = elem unaHerramienta . cajaDeHerramientas 
 
 esMalvado :: Plomero -> Bool
-esMalvado unPlomero = ("Wa" ==).take 2 $ nombre unPlomero
+esMalvado  = ("Wa" ==). take 2 . nombre 
 
 puedeComprar :: Plomero -> Herramienta -> Bool
 puedeComprar unPlomero unaHerramienta = cantidadDinero unPlomero >= precio unaHerramienta
@@ -69,10 +79,10 @@ puedeComprar unPlomero unaHerramienta = cantidadDinero unPlomero >= precio unaHe
 -- PUNTO 3 ======================================================
 
 esBuenaHerramienta :: Herramienta -> Bool
-esBuenaHerramienta (Herramienta _ Hierro precio ) = precio >= 10000
+esBuenaHerramienta (Herramienta _ Hierro precio )     = precio >= 10000
 esBuenaHerramienta (Herramienta "Martillo" Madera _ ) = True
-esBuenaHerramienta (Herramienta "Martillo" Goma _) = True
-esBuenaHerramienta _ = False
+esBuenaHerramienta (Herramienta "Martillo" Goma _)    = True
+esBuenaHerramienta _                                  = False
 
 -- PUNTO 4 ======================================================
 
@@ -85,14 +95,10 @@ comprarHerramienta unPlomero unaHerramienta
 agregaHerramienta :: Herramienta -> Plomero -> Plomero
 agregaHerramienta unaHerramienta  = mapHerramienta (unaHerramienta :) 
 
-mapHerramienta :: ([Herramienta] -> [Herramienta]) -> Plomero -> Plomero
-mapHerramienta f unPlomero = unPlomero {cajaDeHerramientas = f $ cajaDeHerramientas unPlomero}
 
 quitaDinero :: Float -> Plomero -> Plomero
 quitaDinero unDinero  = mapDinero (subtract unDinero) 
 
-mapDinero :: (Float -> Float) -> Plomero -> Plomero
-mapDinero f unPlomero = unPlomero {cantidadDinero = f $ cantidadDinero unPlomero}
 
 -- PUNTO 5 ======================================================
 
@@ -112,11 +118,12 @@ filtracionAgua = Reparacion {
 esDificil :: Reparacion -> Bool
 esDificil (Reparacion descripcion _) = length descripcion > 100 && todasMayusculas descripcion
  
+todasMayusculas :: String -> Bool
 todasMayusculas = all isUpper 
 
 --c) 
 presupuestoReparacion :: Reparacion -> Float
-presupuestoReparacion (Reparacion descripcion _) = (*3). genericLength $ descripcion
+presupuestoReparacion  = (*3). genericLength . descripcion
 
 -- PUNTO 6 ======================================================
 
