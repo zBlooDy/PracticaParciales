@@ -55,7 +55,10 @@ precioUnRelleno unRelleno
     | otherwise                 = 10
 
 esPotable :: Alfajor -> Bool
-esPotable unAlfajor = (not. null . relleno $ unAlfajor) && todasCapasIguales (relleno unAlfajor) && (coeficienteDulzor unAlfajor >= 0.1)   
+esPotable unAlfajor = tieneCapaDeRelleno unAlfajor && todasCapasIguales (relleno unAlfajor) && (coeficienteDulzor unAlfajor >= 0.1)   
+
+tieneCapaDeRelleno :: Alfajor -> Bool
+tieneCapaDeRelleno = not . null . relleno 
 
 todasCapasIguales :: [Relleno] -> Bool
 todasCapasIguales listaRellenos = all (head listaRellenos ==) listaRellenos
@@ -64,7 +67,7 @@ todasCapasIguales listaRellenos = all (head listaRellenos ==) listaRellenos
 
 ---------------
 ----Parte 2----
----------------
+---------------  
 
 -- <- Abaratar -> 
 abaratarAlfajor :: Alfajor -> Alfajor
