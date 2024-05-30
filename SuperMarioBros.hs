@@ -122,7 +122,7 @@ presupuestoReparacion (Reparacion descripcion _) = (*3). genericLength $ descrip
 
 hacerUnaReparacion :: Plomero -> Reparacion -> Plomero
 hacerUnaReparacion unPlomero unaReparacion
-    | puedeReparar unaReparacion unPlomero = agregaReparacion unaReparacion . aumentarDinero (presupuestoReparacion unaReparacion) $ unPlomero 
+    | puedeReparar unaReparacion unPlomero = agregaReparacion unaReparacion . cambiaHerramientas unaReparacion . aumentarDinero (presupuestoReparacion unaReparacion) $ unPlomero 
     | otherwise = aumentarDinero 100 unPlomero
 
 
@@ -135,8 +135,8 @@ aumentarDinero unDinero = mapDinero (+ unDinero)
 agregaReparacion :: Reparacion -> Plomero -> Plomero
 agregaReparacion unaReparacion unPlomero = unPlomero {historialReparaciones = unaReparacion : historialReparaciones unPlomero}
 
-cambiaHerramientas :: Plomero -> Reparacion -> Plomero
-cambiaHerramientas unPlomero unaReparacion
+cambiaHerramientas :: Reparacion -> Plomero -> Plomero
+cambiaHerramientas unaReparacion unPlomero 
     | esMalvado unPlomero     = agregaHerramienta (Herramienta "Destornillador" Plastico 0) unPlomero
     | esDificil unaReparacion = mapHerramienta (filter $ not.esBuenaHerramienta) unPlomero
     | otherwise               = mapHerramienta tail' unPlomero
