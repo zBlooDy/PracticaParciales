@@ -85,3 +85,19 @@ recetaInventada = [prestarMillones (200000000) , entregarEmpresa "Mineria"]
 
 -- b) Se puede aplicar como foldl (\pais estrategia -> estrategia pais) unPais recetaInventada
 
+-----------
+--Punto 4--
+-----------
+
+cualesZafan :: [Pais] -> [Pais]
+cualesZafan = filter tienePetroleo
+
+tienePetroleo :: Pais -> Bool
+tienePetroleo = elem "Petroleo" . recursosNaturales
+
+-- Aparece el concepto de orden superior ya que filter recibe como parametro una funcion. Esa funcion tiene composicion
+
+totalDeuda :: [Pais] -> Float
+totalDeuda = sum . map deuda 
+
+-- Aparece el concepto de composicion de funciones, hace el codigo mucho mas expresivo
