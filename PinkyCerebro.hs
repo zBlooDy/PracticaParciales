@@ -7,15 +7,16 @@ data Animal = Animal {
     nombre :: String,
     iq :: Int,
     especie :: String,
-    capacidades :: [String]
+    capacidades :: [Habilidad]
 }
 
+type Habilidad = String
 -- <- Mapeos ->
 
 mapIQ :: (Int -> Int) -> Animal -> Animal
 mapIQ f unAnimal = unAnimal {iq = f $ iq unAnimal}
 
-mapCapacidad :: ([String] -> [String]) -> Animal -> Animal
+mapCapacidad :: ([Habilidad] -> [Habilidad]) -> Animal -> Animal
 mapCapacidad f unAnimal = unAnimal {capacidades = f $ capacidades unAnimal}
 
 -----------
@@ -33,8 +34,28 @@ pinkificar unAnimal = unAnimal {capacidades = []}
 superpoderes :: Transformacion
 superpoderes unAnimal
   | especie unAnimal == "Elefante"                   = mapCapacidad ("No tenerle miedo a los ratones" :) unAnimal
-  | especie unAnimal == "Raton" && iq unAnimal > 100 = mapCapacidad("Hablar" :) unAnimal
+  | especie unAnimal == "Raton" && iq unAnimal > 100 = mapCapacidad ("Hablar" :) unAnimal
   | otherwise                                        = unAnimal
 
-  
 
+-----------
+--Punto 3--
+-----------
+
+type Criterio = Animal -> Bool
+
+antropomorfico :: Criterio
+antropomorfico unAnimal = elem "Hablar" (capacidades unAnimal) &&  iq unAnimal > 60
+
+noTanCuerdo :: Criterio
+noTanCuerdo = (>2) . length . filter pinkiesco . capacidades
+
+pinkiesco :: Habilidad -> Bool
+pinkiesco unaHabilidad = (take 6 unaHabilidad == "hacer ") && esPinkiesca (drop 6 unaHabilidad)
+
+
+esPinkiesca :: Habilidad -> Bool
+esPinkiesca unaHabilidad = length unaHabilidad <= 4 && any esVocal unaHabilidad
+
+esVocal :: Char -> Bool
+esVocal letra = letra `elem` "aeiouAEIOU"
