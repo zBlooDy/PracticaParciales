@@ -115,3 +115,9 @@ ataqueEntreNaves atacada oponente
 danioRecibido :: Nave -> Nave -> Int
 danioRecibido naveAtacada naveOponente = ataque naveOponente - escudo naveAtacada
 
+-----------
+--Punto 4--
+-----------
+
+estaFueraDeCombate :: Nave -> Bool
+estaFueraDeCombate = (== 0) . durabilidad 
