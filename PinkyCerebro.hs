@@ -4,7 +4,6 @@
 
 
 data Animal = Animal {
-    nombre :: String,
     iq :: Int,
     especie :: String,
     capacidades :: [Habilidad]
@@ -59,3 +58,25 @@ esPinkiesca unaHabilidad = length unaHabilidad <= 4 && any esVocal unaHabilidad
 
 esVocal :: Char -> Bool
 esVocal letra = letra `elem` "aeiouAEIOU"
+
+-----------
+--Punto 4--
+-----------
+
+type Experimento = ([Transformacion], Criterio)
+
+experimentoExitoso :: Experimento -> Animal -> Bool
+experimentoExitoso unExperimento unAnimal = snd unExperimento $ aplicarTransformaciones unAnimal (fst unExperimento)
+
+aplicarTransformaciones :: Animal -> [Transformacion] -> Animal
+aplicarTransformaciones = foldl (\animal transformacion -> transformacion animal)  
+
+papuRaton :: Animal
+papuRaton = Animal {
+    iq = 17,
+    especie = "Raton",
+    capacidades =["destruenglonir el mundo", "hacer planes desalmados"]
+}
+
+-- Consulta: experimentoExitoso ([pinkificar, inteligenciaSuperior 10, superpoderes], antropomorfico) papuRaton
+
