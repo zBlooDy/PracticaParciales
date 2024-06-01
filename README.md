@@ -13,3 +13,5 @@ Enunciado Vacaciones : https://docs.google.com/document/d/1C_oehBaJYavsacmThRZcr
 Enunciado Tierra de Barbaros : https://docs.google.com/document/d/1mBwfHLXmcZKLHSy22exTxibwny9x2a81hKW000tOFMQ/edit
 
 Enunciado Star Wars: https://docs.google.com/document/d/1rbOy1rIFmBxMRhTOWvI-u097l9KatHRbqt5KBXvVSfI/edit
+
+Enunciado Pinky y Cerebro : https://docs.google.com/document/d/12PSO8F15XHRvOn53khcSMqku6qVuo0j2r9g77GCWZHk/edit
