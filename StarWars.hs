@@ -161,4 +161,14 @@ flotaConMenorDebilidadTrasMision flota1 flota2
   | durabilidadFlota flota1 > durabilidadFlota flota2 = flota2
   | otherwise                                         = flota1 
 
-  
+
+-----------
+--Punto 7--
+-----------
+
+flotaInfinita :: Nave -> [Nave]
+flotaInfinita = repeat
+
+--  No se podria obtener la durabilidad, ya que, se necesita sumar TODAS las durabilidades y como la lista es infinita nunca termina
+
+-- Cuando se aplica una mision se va a mostrar la lista infinita de la flota, con las naves que sufrieron ataques y las que no
