@@ -87,3 +87,10 @@ incrementaEscudos :: Int -> Poder
 incrementaEscudos unEscudo = mapEscudo (unEscudo +)
 
 
+-----------
+--Punto 2--
+-----------
+
+durabilidadFlota :: [Nave] -> Int
+durabilidadFlota = sum . map durabilidad
+
