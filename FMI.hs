@@ -89,6 +89,7 @@ recetaInventada = [prestarMillones (200000000) , entregarEmpresa "Mineria"]
 --Punto 4--
 -----------
 
+-- a)
 cualesZafan :: [Pais] -> [Pais]
 cualesZafan = filter tienePetroleo
 
@@ -97,6 +98,7 @@ tienePetroleo = elem "Petroleo" . recursosNaturales
 
 -- Aparece el concepto de orden superior ya que filter recibe como parametro una funcion. Esa funcion tiene composicion
 
+-- b)
 totalDeuda :: [Pais] -> Float
 totalDeuda = sum . map deuda 
 
@@ -113,3 +115,17 @@ recetasOrdenadas unPais (receta1:receta2:recetas) = (calcularPBI $ aplicarReceta
 
 aplicarReceta :: Pais -> Receta -> Pais
 aplicarReceta = foldl (\pais receta -> receta pais)
+
+-----------
+--Punto 6--
+-----------
+
+recursosNaturalesInfinitos :: [String]
+recursosNaturalesInfinitos = "Energia" : recursosNaturalesInfinitos
+
+-- a) Si evaluamos con el punto 4a se va a quedar buscando el elemento "Petroleo" en la lista de recursos naturales, y nunca va a arrojar un resultado
+
+-- b) En el punto 4b va a devolver la deuda ya que no influye en nada la lista infinita de recursos (Concepto de evaluacion diferida: No se evalua lo que no se necesita)
+
+
+
