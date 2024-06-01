@@ -101,3 +101,15 @@ totalDeuda :: [Pais] -> Float
 totalDeuda = sum . map deuda 
 
 -- Aparece el concepto de composicion de funciones, hace el codigo mucho mas expresivo
+
+-----------
+--Punto 5--
+-----------
+
+recetasOrdenadas :: Pais -> [Receta] -> Bool
+recetasOrdenadas _ [receta] = True
+recetasOrdenadas unPais (receta1:receta2:recetas) = (calcularPBI $ aplicarReceta unPais receta1) <= (calcularPBI $ aplicarReceta unPais receta2) && recetasOrdenadas unPais (receta2:recetas)
+
+
+aplicarReceta :: Pais -> Receta -> Pais
+aplicarReceta = foldl (\pais receta -> receta pais)
