@@ -146,3 +146,19 @@ atacarSegunEstrategia :: Nave -> Estrategia -> Nave -> Nave
 atacarSegunEstrategia atacante estrategia naveDeLaFlota 
   | estrategia naveDeLaFlota = sufreUnAtaque naveDeLaFlota atacante
   | otherwise                = naveDeLaFlota
+
+-----------
+--Punto 6--
+-----------
+
+
+cualEstrategiaConviene :: Nave -> [Nave] -> Estrategia -> Estrategia -> [Nave]
+cualEstrategiaConviene unaNave flotaEnemiga unaEstrategia otraEstragia = flotaConMenorDebilidadTrasMision (misionSorpresa unaNave unaEstrategia flotaEnemiga) (misionSorpresa unaNave otraEstragia flotaEnemiga)
+
+
+flotaConMenorDebilidadTrasMision :: [Nave] -> [Nave] -> [Nave]
+flotaConMenorDebilidadTrasMision flota1 flota2
+  | durabilidadFlota flota1 > durabilidadFlota flota2 = flota2
+  | otherwise                                         = flota1 
+
+  
