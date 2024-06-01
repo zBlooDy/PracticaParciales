@@ -94,3 +94,24 @@ incrementaEscudos unEscudo = mapEscudo (unEscudo +)
 durabilidadFlota :: [Nave] -> Int
 durabilidadFlota = sum . map durabilidad
 
+-----------
+--Punto 3--
+-----------
+
+sufreUnAtaque :: Nave -> Nave -> Nave
+sufreUnAtaque atacada oponente = ataqueEntreNaves (aplicaPoderes atacada) (aplicaPoderes oponente)
+
+
+aplicaPoderes :: Nave -> Nave
+aplicaPoderes unaNave = foldl (\nave poder -> poder nave) unaNave (poder unaNave)
+
+ataqueEntreNaves :: Nave -> Nave -> Nave
+ataqueEntreNaves atacada oponente 
+ | escudo atacada > ataque oponente = atacada
+ | otherwise                        = reduceDurabilidad (danioRecibido atacada oponente) atacada
+
+
+
+danioRecibido :: Nave -> Nave -> Int
+danioRecibido naveAtacada naveOponente = ataque naveOponente - escudo naveAtacada
+
