@@ -74,3 +74,14 @@ establecerBlindaje unPais = prestarMillones ((calcularPBI unPais) / 2) . reducir
 calcularPBI :: Pais -> Float
 calcularPBI (Pais ingresoPerCapita sectorPublico sectorPrivado _ _) = ingresoPerCapita * (sectorPublico + sectorPrivado) 
 
+-----------
+--Punto 3--
+-----------
+
+type Receta = [Estrategia]
+
+recetaInventada :: Receta
+recetaInventada = [prestarMillones (200000000) , entregarEmpresa "Mineria"]
+
+-- b) Se puede aplicar como foldl (\pais estrategia -> estrategia pais) unPais recetaInventada
+
