@@ -15,3 +15,5 @@ Enunciado Tierra de Barbaros : https://docs.google.com/document/d/1mBwfHLXmcZKLH
 Enunciado Star Wars: https://docs.google.com/document/d/1rbOy1rIFmBxMRhTOWvI-u097l9KatHRbqt5KBXvVSfI/edit
 
 Enunciado Pinky y Cerebro : https://docs.google.com/document/d/12PSO8F15XHRvOn53khcSMqku6qVuo0j2r9g77GCWZHk/edit
+
+Enunciado FMI : https://docs.google.com/document/d/1l9UjDqVhLdeiON6rtXf7EwGU5JZvN2TWu5AJQzVmSwE/edit
