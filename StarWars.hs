@@ -99,7 +99,7 @@ durabilidadFlota = sum . map durabilidad
 -----------
 
 sufreUnAtaque :: Nave -> Nave -> Nave
-sufreUnAtaque atacada oponente = ataqueEntreNaves (aplicaPoderes atacada) (aplicaPoderes oponente)
+sufreUnAtaque oponente atacada  = ataqueEntreNaves (aplicaPoderes atacada) (aplicaPoderes oponente)
 
 
 aplicaPoderes :: Nave -> Nave
@@ -121,3 +121,28 @@ danioRecibido naveAtacada naveOponente = ataque naveOponente - escudo naveAtacad
 
 estaFueraDeCombate :: Nave -> Bool
 estaFueraDeCombate = (== 0) . durabilidad 
+
+-----------
+--Punto 5--
+-----------
+
+type Estrategia = Nave -> Bool
+
+esNaveDebil :: Estrategia
+esNaveDebil = (< 200) . escudo
+
+esNaveConPeligrosidad :: Int -> Estrategia
+esNaveConPeligrosidad unValor = (> unValor) . ataque
+
+esNaveQueQuedariaFuera :: Nave -> Estrategia
+esNaveQueQuedariaFuera naveAtacante = estaFueraDeCombate . sufreUnAtaque naveAtacante
+
+
+misionSorpresa :: Nave -> Estrategia -> [Nave] -> [Nave]
+misionSorpresa unaNave estrategia = map (atacarSegunEstrategia unaNave estrategia) 
+
+
+atacarSegunEstrategia :: Nave -> Estrategia -> Nave -> Nave
+atacarSegunEstrategia atacante estrategia naveDeLaFlota 
+  | estrategia naveDeLaFlota = sufreUnAtaque naveDeLaFlota atacante
+  | otherwise                = naveDeLaFlota
