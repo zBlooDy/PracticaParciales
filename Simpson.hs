@@ -1,7 +1,9 @@
+import Data.List
+
 data Simpson = Simpson {
-    nombre :: String, 
-    dinero :: Int,
-    felicidad :: Int
+  nombre :: String, 
+  dinero :: Int,
+  felicidad :: Int
 } deriving (Eq)
 
 ------------
@@ -49,3 +51,49 @@ aumentarDinero unDinero = mapDinero (unDinero +)
 irATrabajarComoDirector :: Actividad
 irATrabajarComoDirector = irATrabajar ("Escuela Elemental") . disminuirFelicidad 20
 
+-----------
+--Punto 2--
+-----------
+
+type Logro = Simpson -> Bool
+
+serMillonario :: Logro
+serMillonario = (> dinero srBurns) . dinero
+
+srBurns :: Simpson
+srBurns = (Simpson "Sr. Burns" 1000000 0)
+
+alegrarse :: Int -> Logro
+alegrarse nivelDeFelicidad = (> nivelDeFelicidad) . felicidad
+
+irAVerKrosti :: Logro
+irAVerKrosti = (>=10) . dinero
+
+-- A)
+
+esDecisiva :: Logro -> Simpson -> Actividad -> Bool
+esDecisiva unLogro unSimpson unaActividad = ((==False). unLogro $ unSimpson) && ((==True) . unLogro . unaActividad $ unSimpson)
+
+
+-- B)
+
+actividadesDecisivas :: Simpson -> Logro -> [Actividad] -> Simpson
+actividadesDecisivas unSimpson unLogro actividades
+  | any (esDecisiva unLogro unSimpson) actividades  = aplicarPrimeraDecisiva unSimpson unLogro actividades
+  | otherwise                                       = unSimpson
+   
+
+
+aplicarPrimeraDecisiva :: Simpson -> Logro -> [Actividad] -> Simpson
+aplicarPrimeraDecisiva unSimpson unLogro (actividad1:actividades)
+  | esDecisiva unLogro unSimpson actividad1 = actividad1 unSimpson
+  | otherwise                               = aplicarPrimeraDecisiva unSimpson unLogro actividades
+
+
+-- C)
+
+trabajarParaLaMafiaSinFin :: [Actividad]
+trabajarParaLaMafiaSinFin = repeat (irATrabajar "mafia")
+
+listaInfinitaActividades :: Actividad -> [Actividad]
+listaInfinitaActividades unaActividad = repeat unaActividad
