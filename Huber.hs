@@ -65,3 +65,10 @@ alejandra = Chofer {
     viajes = [],
     condicion = ninguna
 }
+
+-----------
+--Punto 4--
+-----------
+
+puedeTomarViaje :: Chofer -> Viaje -> Bool
+puedeTomarViaje unChofer unViaje = condicion unChofer unViaje
