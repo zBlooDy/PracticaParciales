@@ -77,6 +77,10 @@ papuRaton = Animal {
     especie = "Raton",
     capacidades =["destruenglonir el mundo", "hacer planes desalmados"]
 }
-
 -- Consulta: experimentoExitoso ([pinkificar, inteligenciaSuperior 10, superpoderes], antropomorfico) papuRaton
 
+-----------
+--Punto 6--
+-----------
+
+-- Se podria hacer con el criterio antropomorfico, arrojaria un resultado directo si no cumple con ese iq
