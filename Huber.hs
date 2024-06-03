@@ -106,3 +106,30 @@ efectuarViaje unViaje = mapViajes (unViaje :)
 
 mapViajes :: ([Viaje] -> [Viaje]) -> Chofer -> Chofer
 mapViajes f unChofer = unChofer {viajes = f $ viajes unChofer}
+
+-----------
+--Punto 7--
+-----------
+
+-- A)
+
+nitoInfy :: Chofer
+nitoInfy = Chofer {
+    nombre = "Nito Infy",
+    kilometraje = 70000,
+    viajes = repetirViaje (Viaje (11,03,2017) lucas 50),
+    condicion = clienteConNLetras 3
+}
+
+repetirViaje :: Viaje -> [Viaje]
+repetirViaje unViaje = unViaje : repetirViaje unViaje
+
+-- B) No, no se puede calcular la liquidacion del chofer, debido que esta funcion utiliza "sum" la cual necesita recorrer toda la lista, lo cual se quedaria procesando y nunca arrojaria un resultado
+
+-- C) Si, esto ocurre por la evaluacion diferida con la que trabaja Haskell. "No se evalua lo que no hace falta", para tomar el viaje solo necesita chequear que cumpla la condicion, sin intervenir los infinitos viajes que tiene realizados.
+
+-----------
+--Punto 8--
+-----------
+gongNeng :: b -> (b -> Bool ) -> (a -> b) -> [a] -> b
+gongNeng arg1 arg2 arg3 = max arg1 . head . filter arg2 . map arg3 
