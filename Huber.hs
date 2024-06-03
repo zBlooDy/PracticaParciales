@@ -72,3 +72,10 @@ alejandra = Chofer {
 
 puedeTomarViaje :: Chofer -> Viaje -> Bool
 puedeTomarViaje unChofer unViaje = condicion unChofer unViaje
+
+-----------
+--Punto 5--
+-----------
+
+liquidacionChofer :: Chofer -> Int
+liquidacionChofer = sum . map costo . viajes
