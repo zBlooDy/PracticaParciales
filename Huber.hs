@@ -39,3 +39,29 @@ clienteConNLetras cantidad = (> cantidad) . length . nombreCliente . cliente
 
 noViveEn :: String -> Condicion
 noViveEn zona = (/= zona) . localidad . cliente
+
+-----------
+--Punto 3--
+-----------
+
+lucas :: Cliente
+lucas = Cliente {
+    nombreCliente = "Lucas",
+    localidad = "Victoria"
+}
+
+daniel :: Chofer
+daniel = Chofer {
+    nombre = "Daniel",
+    kilometraje = 23500,
+    viajes = [Viaje (20,04,2017) lucas 150],
+    condicion = noViveEn "Olivos"
+}
+
+alejandra :: Chofer
+alejandra = Chofer {
+    nombre = "Alejandra",
+    kilometraje = 180000,
+    viajes = [],
+    condicion = ninguna
+}
