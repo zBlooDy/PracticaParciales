@@ -1,3 +1,4 @@
+import Text.Show.Functions
 -----------
 --Punto 1--
 -----------
@@ -7,7 +8,7 @@ data Chofer = Chofer {
     kilometraje :: Int,
     viajes :: [Viaje],
     condicion :: Condicion
-}
+} deriving (Show)
 
 type Condicion = Viaje -> Bool
 
@@ -15,14 +16,14 @@ data Viaje = Viaje {
     fecha :: Fecha,
     cliente :: Cliente,
     costo :: Int
-}
+} deriving (Show)
 
 type Fecha = (Int, Int, Int)
 
 data Cliente = Cliente {
     nombreCliente :: String,
     localidad :: String
-}
+} deriving (Show)
 
 -----------
 --Punto 2--
@@ -70,8 +71,8 @@ alejandra = Chofer {
 --Punto 4--
 -----------
 
-puedeTomarViaje :: Chofer -> Viaje -> Bool
-puedeTomarViaje unChofer unViaje = condicion unChofer unViaje
+puedeTomarViaje :: Viaje -> Chofer -> Bool
+puedeTomarViaje unViaje unChofer = condicion unChofer unViaje
 
 -----------
 --Punto 5--
@@ -79,3 +80,29 @@ puedeTomarViaje unChofer unViaje = condicion unChofer unViaje
 
 liquidacionChofer :: Chofer -> Int
 liquidacionChofer = sum . map costo . viajes
+
+-----------
+--Punto 6--
+-----------
+
+realizarUnViaje :: Viaje -> [Chofer] -> Chofer
+realizarUnViaje unViaje = efectuarViaje unViaje . choferConMenosViajes . choferesQuePuedenRealizar unViaje
+
+choferesQuePuedenRealizar :: Viaje -> [Chofer] -> [Chofer]
+choferesQuePuedenRealizar unViaje = filter (puedeTomarViaje unViaje)
+
+choferConMenosViajes :: [Chofer] -> Chofer
+choferConMenosViajes = foldl1 menosViajes
+
+menosViajes :: Chofer -> Chofer -> Chofer
+menosViajes unChofer otroChofer 
+  | cantidadViajes unChofer > cantidadViajes otroChofer = otroChofer
+  | otherwise                                             = unChofer
+  where
+    cantidadViajes = length . viajes
+
+efectuarViaje :: Viaje -> Chofer -> Chofer
+efectuarViaje unViaje = mapViajes (unViaje :)
+
+mapViajes :: ([Viaje] -> [Viaje]) -> Chofer -> Chofer
+mapViajes f unChofer = unChofer {viajes = f $ viajes unChofer}
