@@ -21,3 +21,7 @@ Enunciado FMI : https://docs.google.com/document/d/1l9UjDqVhLdeiON6rtXf7EwGU5JZv
 Enunciado Simpson : https://docs.google.com/document/d/1fIdfbyhyio8K2Wx9GaEZZ5cjU8P1rY8ZzdO2p4SP4OE/edit
 
 Enunciado Huber 2.0 : https://docs.google.com/document/d/1b-dhR_yAQui07DvZCk2vvwIkcs-d9jxM7mX203nMaz8/edit#heading=h.zbkmy4dl5yl0
+
+Enunciado Haskell Chef : https://docs.google.com/document/d/13SS-HXVR7z5SOgQCwYh2Maob7QhSh858PTSzc7MymCY/edit
+
+Enunciado Simulacro : https://docs.google.com/document/d/13SS-HXVR7z5SOgQCwYh2Maob7QhSh858PTSzc7MymCY/edit
