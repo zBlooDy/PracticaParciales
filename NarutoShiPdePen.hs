@@ -28,7 +28,7 @@ mapRango f unNinja = unNinja {rango = max 0 . f $ rango unNinja}
 obtenerHerramienta :: Herramienta -> Ninja -> Ninja
 obtenerHerramienta unaHerramienta unNinja
   | puedeObtener unaHerramienta unNinja = agregarHerramienta unaHerramienta unNinja
-  | otherwise                           = agregarHerramienta (sinExceder unaHerramienta) unNinja
+  | otherwise                           = agregarHerramienta (sinExceder unaHerramienta unNinja ) unNinja
 
 
 puedeObtener :: Herramienta -> Ninja -> Bool
@@ -40,8 +40,8 @@ sumaDeHerramientas = sum . map cantidadDisponible . herramientas
 agregarHerramienta :: Herramienta -> Ninja -> Ninja
 agregarHerramienta unaHerramienta = mapHerramienta (unaHerramienta :)
 
-sinExceder :: Herramienta -> Herramienta
-sinExceder (nombre, cantidad) = (nombre, min 100 cantidad)
+sinExceder :: Herramienta -> Ninja -> Herramienta
+sinExceder (nombre, cantidad) unNinja = (nombre, min (100 - sumaDeHerramientas unNinja) cantidad)
 
 -- b)
 
