@@ -1,9 +1,10 @@
+import Text.Show.Functions
 data Ninja = Ninja {
     nombre :: String,
     herramientas :: [Herramienta],
-    jutsus :: Jutsu,
+    jutsus :: [Jutsu],
     rango :: Int
-}
+} deriving (Show)
 
 type Herramienta = (String, Int)
 
@@ -60,7 +61,7 @@ data Mision = Mision {
     rangoRecomendado :: Int,
     ninjasEnemigos :: [Ninja],
     recompensa :: Herramienta
-}
+} deriving (Show)
 
 type Equipo = [Ninja]
 
@@ -155,9 +156,28 @@ aplicarJutsus unaMision unEquipo = foldl (\mision jutsu -> jutsu mision) unaMisi
 
 
 jutsusEquipo :: Equipo -> [Jutsu]
-jutsusEquipo unEquipo = map jutsus unEquipo
+jutsusEquipo unEquipo = concatMap jutsus unEquipo
 
 hacerMision :: Equipo -> Mision -> Equipo
 hacerMision unEquipo unaMision 
   | esCopada unaMision || esFactible unaMision unEquipo = cumplirMision unaMision unEquipo
   | otherwise                                           = fallarMision unaMision unEquipo
+
+
+-----------
+--Parte C--
+-----------
+
+granGuerraNinja :: Mision
+granGuerraNinja = Mision 100000 100 infinitosZetsus ("Abanico de Madara Uchiha", 1)
+
+infinitosZetsus :: [Ninja]
+infinitosZetsus = map zetsu [1..]
+
+zetsu :: Int -> Ninja
+zetsu unNumero = Ninja ("Zetsu " ++ show unNumero) [] [] 600
+
+
+-- A) Si algun integrante del equipo es novato, va a devolver directamente True por la Lazy Evaluation de Haskell (Ve que es un falso y con && siempre predomina el falso). En caso de que no pase eso, va a quedarse analizando la longitud de enemigos que como es infinita no puede devolver un resultado
+-- B) Siempre puede arrojar un resultado y va a ser Falso, ya que, no interviene la lista infinita. Vuelve a aparecer el concepto de evaluacion diferida, no se evalua lo que no se necesita
+-- C) Se queda evaluandoy  no puede arrojar un resultado, ya que necesitar filtrar entre los infinitos cuales son <500 el rango
