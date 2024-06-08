@@ -25,3 +25,5 @@ Enunciado Huber 2.0 : https://docs.google.com/document/d/1b-dhR_yAQui07DvZCk2vvw
 Enunciado Haskell Chef : https://docs.google.com/document/d/13SS-HXVR7z5SOgQCwYh2Maob7QhSh858PTSzc7MymCY/edit
 
 Enunciado Simulacro : https://docs.google.com/document/d/13SS-HXVR7z5SOgQCwYh2Maob7QhSh858PTSzc7MymCY/edit
+
+Enunciado Mundial 2014 : https://docs.google.com/document/d/1UQzCyCj5krcwh7wPqRpoHXTOFl3IvbT8JdpLW0nzJYA/edit
