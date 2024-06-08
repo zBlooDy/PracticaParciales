@@ -1,10 +1,10 @@
 -- Escribí tu código acá
 data Auto = Auto {
-    marca :: String,
-    modelo :: String,
-    desgaste :: (Ruedas, Chasis),
-    velocidadMax :: Float,
-    tiempoDeCarrera :: Float
+  marca :: String,
+  modelo :: String,
+  desgaste :: (Ruedas, Chasis),
+  velocidadMax :: Float,
+  tiempoDeCarrera :: Float
 }
 
 type Ruedas = Float
@@ -16,29 +16,29 @@ type Chasis = Float
 
 autoFerrari :: Auto
 autoFerrari = Auto {
-    marca = "Ferrari",
-    modelo = "F50",
-    desgaste = (0,0),
-    velocidadMax = 65,
-    tiempoDeCarrera = 0
+  marca = "Ferrari",
+  modelo = "F50",
+  desgaste = (0,0),
+  velocidadMax = 65,
+  tiempoDeCarrera = 0
 }
 
 autoLamborghini :: Auto
 autoLamborghini = Auto {
-    marca = "Lamborghini",
-    modelo = "Diablo",
-    desgaste = (4,7),
-    velocidadMax = 73,
-    tiempoDeCarrera = 0
+  marca = "Lamborghini",
+  modelo = "Diablo",
+  desgaste = (4,7),
+  velocidadMax = 73,
+  tiempoDeCarrera = 0
 }
 
 autoFiat :: Auto
 autoFiat = Auto {
-    marca = "Fiat",
-    modelo = "600",
-    desgaste = (27,33),
-    velocidadMax = 44,
-    tiempoDeCarrera = 0
+  marca = "Fiat",
+  modelo = "600",
+  desgaste = (27,33),
+  velocidadMax = 44,
+  tiempoDeCarrera = 0
 }
 
 -----------
@@ -83,7 +83,6 @@ anularDesgasteRuedas unAuto = unAuto {desgaste = (0, desgasteChasis unAuto)}
 --Punto 4--
 -----------
 
-type Pista = [Tramo]
 
 type Tramo = Auto -> Auto
 
@@ -164,6 +163,8 @@ pasarPorTramo unTramo unAuto
 -----------
 --Punto 6--
 -----------
+
+type Pista = [Tramo]
 -- A)
 
 superPista :: Pista
@@ -171,7 +172,7 @@ superPista = [tramoRectoClassic, curvaTranca, tramoMojado tramito , tramito, tra
 
 -- B) 
 peganLaVuelta :: Pista -> [Auto] -> [Auto]
-peganLaVuelta unaPista = map (aplicarTramos unaPista)
+peganLaVuelta unaPista = filter (not . noDaParaMas) . map (aplicarTramos unaPista)
 
 aplicarTramos :: Pista -> Auto -> Auto
 aplicarTramos unaPista unAuto = foldl (\auto tramo -> pasarPorTramo tramo auto) unAuto unaPista
@@ -196,5 +197,5 @@ jugarUnaCarrerra (pista, vueltas) = take vueltas . vanCorriendoVueltas pista
 
 
 vanCorriendoVueltas :: Pista -> [Auto] -> [Auto]
-vanCorriendoVueltas unaPista listaAutos = 
+vanCorriendoVueltas unaPista = iterate (peganLaVuelta unaPista)
 
