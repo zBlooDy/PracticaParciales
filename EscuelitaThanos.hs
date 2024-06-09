@@ -113,3 +113,26 @@ reducirEdad unPersonaje = unPersonaje {edad = edadSegunGemaTiempo}
 gemaLoca :: Gema -> Gema
 gemaLoca unaGema = unaGema . unaGema 
 
+-----------
+--Punto 4--
+-----------
+
+guanteleteFlojo :: Guantelete
+guanteleteFlojo = (Guantelete "Goma" [tiempo, alma "usar Mjolnir", gemaLoca (alma "programacion en Haskell")])
+
+-----------
+--Punto 5--
+-----------
+
+utilizar :: [Gema] -> Personaje -> Personaje
+utilizar listaGemas unEnemigo = foldl (\enemigo gema -> gema enemigo) unEnemigo listaGemas
+
+-----------
+--Punto 6--
+-----------
+
+gemaMasPoderosa :: Guantelete -> Personaje -> Gema
+gemaMasPoderosa (Guantelete _ [gema]) _ = gema
+gemaMasPoderosa (Guantelete material (gema1:gema2:gemas)) unPersonaje
+    | energia (gema1 unPersonaje) < energia (gema2 unPersonaje) = gemaMasPoderosa (Guantelete material (gema1:gemas)) unPersonaje
+    | otherwise                                                 = gemaMasPoderosa (Guantelete material (gema2:gemas)) unPersonaje
