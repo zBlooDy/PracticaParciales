@@ -50,3 +50,34 @@ maximo f a b
   | f a > f b = a
   | otherwise = b
 
+-----------
+--Punto 2--
+-----------
+
+data Gusano = Gusano {
+    longitud :: Float,
+    nivelHidratacion :: Int,
+    descripcion :: String
+}
+
+reproducir :: Gusano -> Gusano -> Gusano
+reproducir unGusano otroGusano = Gusano {
+    longitud = 0.1 * mayorLongitud unGusano otroGusano,
+    nivelHidratacion = 0,
+    descripcion = descripcion unGusano ++ " - " ++ descripcion otroGusano  
+    }
+
+mayorLongitud :: Gusano -> Gusano -> Float
+mayorLongitud unGusano otroGusano = max (longitud unGusano) (longitud otroGusano)
+
+
+listaDeCrias :: [Gusano] -> [Gusano] -> [Gusano] 
+listaDeCrias gusanos1 gusanos2 = zipWith reproducir gusanos1 gusanos2
+
+listaDeCrias' :: [Gusano] -> [Gusano] -> [Gusano] 
+listaDeCrias' gusanos1 gusanos2 = map (uncurry reproducir) (zip gusanos1 gusanos2)
+
+-- zip me deja las dos listas en una lista de a pares ordenados
+-- uncurry le aplica a un par ordenado, la funcion que le mando
+-- entonces transformo la lista con el map, aplicandole a cada elemento (par ordenado) uncurry reproducir
+
