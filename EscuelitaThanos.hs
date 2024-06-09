@@ -136,3 +136,21 @@ gemaMasPoderosa (Guantelete _ [gema]) _ = gema
 gemaMasPoderosa (Guantelete material (gema1:gema2:gemas)) unPersonaje
     | energia (gema1 unPersonaje) < energia (gema2 unPersonaje) = gemaMasPoderosa (Guantelete material (gema1:gemas)) unPersonaje
     | otherwise                                                 = gemaMasPoderosa (Guantelete material (gema2:gemas)) unPersonaje
+
+
+-----------
+--Punto 7--
+-----------   
+
+infinitasGemas :: Gema -> [Gema]
+infinitasGemas gema = gema : (infinitasGemas gema)
+
+guanteleteDeLocos :: Guantelete
+guanteleteDeLocos = Guantelete "vesconite" (infinitasGemas tiempo)
+
+usoLasTresPrimerasGemas :: Guantelete -> Personaje -> Personaje
+usoLasTresPrimerasGemas guantelete = (utilizar . take 3. gemas) guantelete
+
+
+-- No se puede ejectuar (y esperar un resultado) gemaMasPoderosa por el hecho de que nunca va a llegar al caso base, al ser una lista infinita de gemas va a mantenerse evaluando y nunca termina
+-- Se puede ejecutar y devolver un resultado utilizando usoLasTresPrimerasGemas. Esto sucede, ya que, haskell trabaja con evaluacion diferida (no evalua lo que no necesita) entonces simplemente toma los 3 primeros elementos de la lista infinita y los utiliza, esto si va devolver un resultado.
