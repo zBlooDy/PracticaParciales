@@ -29,3 +29,13 @@ Enunciado Simulacro : https://docs.google.com/document/d/13SS-HXVR7z5SOgQCwYh2Ma
 Enunciado Mundial 2014 : https://docs.google.com/document/d/1UQzCyCj5krcwh7wPqRpoHXTOFl3IvbT8JdpLW0nzJYA/edit
 
 Enunciado Parciales de la Locura: https://docs.google.com/document/d/1j3Mtv0qYY4QwTsbalF7yVz6WW0QVJyBpLvl8lGMOkoc/edit?usp=sharing
+
+Enunciado Dune : https://docs.google.com/document/d/1vfmY4xOaGVMtDCixKtA6rDugwWM86ZJaL7K5vDKcksA/edit
+
+Enunciado Escuelita de Thanos: https://docs.google.com/document/d/1IKrJkdbPyoxfHqREIfqzxpsBdANcL2g9gvs9t-IR30E/edit?usp=sharing
+
+Enunciado Padrinos Magicos: https://drive.google.com/file/d/18c1VXjtvMaJeIIHE-gMtTOWycW4r62Ig/view?usp=sharing
+
+Enunciado Ladrones Lambda: https://docs.google.com/document/d/1J6lNIF-GhMkDy0SvPZXjSMgs7Z9XX-Dh2slZLwmB5kA/edit?usp=sharing
+
+Enunciado Puños de Puria : https://docs.google.com/document/d/1Dtd4n1fYLdsSBPyHnFsSvctCrwBE1zkevGwThkTDAXU/edit
