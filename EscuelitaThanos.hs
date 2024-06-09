@@ -1,5 +1,12 @@
 -- <--- Primera Parte --->
 
+-- <- Mapeos ->
+
+mapEnergia :: (Float -> Float) -> Personaje -> Personaje
+mapEnergia f unPersonaje = unPersonaje {energia = f $ energia unPersonaje}
+
+mapHabilidad :: ([Habilidad] -> [Habilidad]) -> Personaje -> Personaje
+mapHabilidad f unPersonaje = unPersonaje {habilidades = f $ habilidades unPersonaje}
 -----------
 --Punto 1--
 -----------
@@ -15,9 +22,11 @@ data Personaje = Personaje {
     nombre :: String,
     edad :: Int,
     energia :: Float,
-    habilidades :: [String],
+    habilidades :: [Habilidad],
     planeta :: String
 }
+
+type Habilidad = String
 
 type Universo = [Personaje]
 
@@ -48,4 +57,59 @@ energiaTotal = sum . map energia . filter (masDeUnaHabilidad)
 masDeUnaHabilidad :: Personaje -> Bool
 masDeUnaHabilidad = (> 1) . length . habilidades
 
--- <--- Primera Parte --->
+-- <--- Segunda Parte --->
+
+-----------
+--Punto 3--
+-----------
+
+-- <La mente>
+mente :: Float -> Gema
+mente unValor = debilitarEnergia (unValor)
+
+debilitarEnergia :: Float -> Personaje -> Personaje
+debilitarEnergia unValor = mapEnergia (subtract unValor)
+
+-- <El alma>
+alma :: Habilidad -> Gema
+alma unaHabilidad = debilitarEnergia 10 . eliminarHabilidad unaHabilidad
+
+eliminarHabilidad :: Habilidad -> Personaje -> Personaje
+eliminarHabilidad unaHabilidad = mapHabilidad (filter (/= unaHabilidad))
+
+-- <El espacio>
+espacio :: String -> Gema
+espacio unPlaneta = debilitarEnergia 20 . transportarAlPlaneta unPlaneta
+
+transportarAlPlaneta :: String -> Personaje -> Personaje
+transportarAlPlaneta nuevoPlaneta unPersonaje = unPersonaje {planeta = nuevoPlaneta}
+
+-- <El poder>
+
+poder :: Gema
+poder = anularEnergia . quitarHabilidadesSegun 2
+
+anularEnergia :: Personaje -> Personaje
+anularEnergia = mapEnergia (const 0)
+
+quitarHabilidadesSegun :: Int -> Personaje -> Personaje
+quitarHabilidadesSegun unValor unPersonaje
+  | cantidadHabilidades <= unValor = mapHabilidad (const []) unPersonaje
+  | otherwise                      = unPersonaje
+  where
+    cantidadHabilidades = length . habilidades $ unPersonaje
+
+-- <El tiempo>
+tiempo :: Gema
+tiempo = debilitarEnergia 50 . reducirEdad
+
+reducirEdad :: Personaje -> Personaje
+reducirEdad unPersonaje = unPersonaje {edad = edadSegunGemaTiempo}
+    where
+        edadSegunGemaTiempo = max 18 (edad unPersonaje `div` 2)
+
+-- <La gema loca>
+
+gemaLoca :: Gema -> Gema
+gemaLoca unaGema = unaGema . unaGema 
+
