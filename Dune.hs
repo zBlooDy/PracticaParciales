@@ -122,3 +122,13 @@ realizarMisionColectiva unGusano unaTribu unaMision = map (unaMision unGusano) u
 
 cambiaElegido :: Gusano -> Tribu -> Mision -> Bool
 cambiaElegido unGusano unaTribu unaMision = hallarElegido unaTribu /= (hallarElegido (realizarMisionColectiva unGusano unaTribu unaMision))
+
+-----------
+--Punto 4--
+-----------
+
+-- a) Entrenarlos se puede, va a mostrar la lista infinita de como queda cuando se les modifica alguna caracteristca
+
+-- b) En el caso de que en esa tribu de Fremen haya algun candidato a ser elegido (que cumpla las condiciones) lo va a mostrar directamente porque encuentra un primer valor verdadero y por la evaluacion diferida de haskell no necesita seguir evaluando la lista infinita
+
+-- c) Para encontrar el elegido se va a quedar evaluando infinitamente porque primero tiene que filtrar entre aquellos que son candidatos, osea que no puede arrojar un resultado
