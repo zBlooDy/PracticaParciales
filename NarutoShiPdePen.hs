@@ -178,6 +178,6 @@ zetsu :: Int -> Ninja
 zetsu unNumero = Ninja ("Zetsu " ++ show unNumero) [] [] 600
 
 
--- A) Si algun integrante del equipo es novato, va a devolver directamente True por la Lazy Evaluation de Haskell (Ve que es un falso y con && siempre predomina el falso). En caso de que no pase eso, va a quedarse analizando la longitud de enemigos que como es infinita no puede devolver un resultado
+-- A) Si algun integrante del equipo no es novato, va a devolver False (debido a la Lazy Evaluation de Haskell, deja de evaluar porque ys tiene un False en una conjuncion). En cambio, si hay algun ninja novato no puede devolver un vallr ya que se queda procesando la longitud de la lista infinita 
 -- B) Siempre puede arrojar un resultado y va a ser Falso, ya que, no interviene la lista infinita. Vuelve a aparecer el concepto de evaluacion diferida, no se evalua lo que no se necesita
 -- C) Se queda evaluandoy  no puede arrojar un resultado, ya que necesitar filtrar entre los infinitos cuales son <500 el rango
