@@ -86,4 +86,29 @@ mayor unEnemigo ataque1 ataque2
   | puntosVida (ataque1 unEnemigo) < puntosVida (ataque2 unEnemigo) = ataque2
   | otherwise                                                       = ataque1
 
-  
+-----------
+--Punto 3--
+-----------
+
+-- a)
+esTerrible :: Ataque -> [Enemigo] -> Bool
+esTerrible unAtaque = mataronMuchos . atacarEnemigos unAtaque
+
+atacarEnemigos :: Ataque -> [Enemigo] -> [Enemigo]
+atacarEnemigos unAtaque = map (\enemigo -> unAtaque enemigo)
+
+mataronMuchos :: [Enemigo] -> Bool
+mataronMuchos enemigos = (length . filter estaMuerto $ enemigos) > (length enemigos `div` 2)
+
+-- b)
+esPeligroso :: Peleador -> [Enemigo] -> Bool
+esPeligroso unPeleador enemigos = all (flip esTerrible enemigosHabiles) (ataques unPeleador)
+    where
+        enemigosHabiles = filter esHabil enemigos
+
+-- c)
+invencible :: Peleador -> [Enemigo] -> Bool
+invencible unPeleador enemigos = (puntosVida (foldl (aplicarMejorAtaque) unPeleador enemigos)) == (puntosVida unPeleador)
+
+aplicarMejorAtaque :: Peleador -> Enemigo -> Peleador
+aplicarMejorAtaque unPeleador unEnemigo = (mejorAtaque unPeleador unEnemigo) $ unPeleador
