@@ -74,3 +74,16 @@ ataqueBruce = patada "Carita" . patada "Carita" . patada "Carita"
 -----------
 --Punto 2--
 -----------
+
+type Enemigo = Peleador
+
+mejorAtaque :: Peleador -> Enemigo -> Ataque
+mejorAtaque unPeleador unEnemigo = foldl1 (mayor unEnemigo) (ataques unPeleador)
+
+
+mayor :: Enemigo -> Ataque -> Ataque -> Ataque
+mayor unEnemigo ataque1 ataque2
+  | puntosVida (ataque1 unEnemigo) < puntosVida (ataque2 unEnemigo) = ataque2
+  | otherwise                                                       = ataque1
+
+  
