@@ -74,3 +74,61 @@ tensor = map toUpper
 -- e)
 socotroco :: Herramienta -> Herramienta -> Herramienta
 socotroco unaHerramienta otraHerramienta = unaHerramienta .  otraHerramienta
+
+-----------
+--Parte 3--
+-----------
+
+data Ladron = Ladron {
+    nombre :: String,
+    herramientas :: [Herramienta],
+    tesorosRobados :: [Tesoro]
+}
+
+data Cofre = Cofre {
+    cerradura :: Cerradura,
+    tesoro :: Tesoro
+}
+
+-- a)
+esLegendario :: Ladron -> Bool
+esLegendario unLadron = (experiencia unLadron > 100) && sonTodosDeLujo (tesorosRobados unLadron)
+
+experiencia :: Ladron -> Int
+experiencia = sum . map valorTesoro . tesorosRobados
+
+sonTodosDeLujo :: [Tesoro] -> Bool
+sonTodosDeLujo = all deLujo
+
+-- b)
+
+robarCofre :: Ladron -> Cofre -> Ladron
+robarCofre unLadron unCofre = usarHerramientasParaRobar (herramientas unLadron) unCofre unLadron
+
+usarHerramientasParaRobar :: [Herramienta] -> Cofre -> Ladron -> Ladron
+usarHerramientasParaRobar [] _ unLadron = unLadron
+usarHerramientasParaRobar herramientas unCofre unLadron
+  | estaAbierta (cerradura unCofre) = agregarTesoro (tesoro unCofre) . herramientasNoUtilizadas (herramientas) $ unLadron
+  | otherwise                       = usarHerramientasParaRobar (drop 1 herramientas) cofreDebilitado unLadron
+  where
+    cofreDebilitado = usarHerramienta (head herramientas) unCofre
+
+
+usarHerramienta :: Herramienta -> Cofre -> Cofre
+usarHerramienta unaHerramienta unCofre = unCofre {cerradura = unaHerramienta (cerradura unCofre)}
+
+agregarTesoro :: Tesoro -> Ladron -> Ladron
+agregarTesoro unTesoro = mapTesoros (unTesoro :)
+
+mapTesoros :: ([Tesoro] -> [Tesoro]) -> Ladron -> Ladron
+mapTesoros f unLadron = unLadron {tesorosRobados = f $ tesorosRobados unLadron}
+
+herramientasNoUtilizadas :: [Herramienta] -> Ladron -> Ladron
+herramientasNoUtilizadas herramientasSinUsar unLadron = unLadron {herramientas = herramientasSinUsar}
+
+
+-- c)
+
+atraco :: Ladron -> [Cofre] -> Ladron
+atraco = foldl robarCofre 
+
