@@ -7,14 +7,15 @@
 data Chico = Chico {
     nombre :: String,
     edad :: Int,
-    habilidades :: [String],
+    habilidades :: [Habilidad],
     deseos :: [Deseo]
 }
 
+type Habilidad = String
 type Deseo = Chico -> Chico
 
 
-mapHabilidades :: ([String] -> [String]) -> Chico -> Chico
+mapHabilidades :: ([Habilidad] -> [Habilidad]) -> Chico -> Chico
 mapHabilidades f unChico = unChico {habilidades = f $ habilidades unChico}
 
 mapEdad :: (Int -> Int) -> Chico -> Chico
@@ -22,7 +23,7 @@ mapEdad f unChico = unChico {edad = f $ edad unChico}
 
 -- a)
 
-aprenderHabilidades :: [String] -> Deseo
+aprenderHabilidades :: [Habilidad] -> Deseo
 aprenderHabilidades habilidades = mapHabilidades (habilidades ++)
 
 -- b)
@@ -30,10 +31,10 @@ aprenderHabilidades habilidades = mapHabilidades (habilidades ++)
 serGrosoEnNeedForSpeed :: Deseo
 serGrosoEnNeedForSpeed = mapHabilidades (infinitasVersiones ++)
 
-infinitasVersiones :: [String]
+infinitasVersiones :: [Habilidad]
 infinitasVersiones = map (needForSpeeds) [1..]
 
-needForSpeeds :: Int -> String
+needForSpeeds :: Int -> Habilidad
 needForSpeeds unNumero = "jugar need for speed " ++ show unNumero
 
 -- c)
@@ -65,4 +66,46 @@ desmadurar unaEdad = mapEdad (subtract unaEdad)
 muffinMagico :: Padrino
 muffinMagico unChico = foldl (\chico deseo -> deseo chico) unChico (deseos unChico)
 
+
+-----------
+--Parte B--
+-----------
+
+type Condicion = Chico -> Bool
+-- 1)
+
+-- a)
+tieneHabilidad :: Habilidad -> Condicion
+tieneHabilidad unaHabilidad = elem unaHabilidad . habilidades
+
+-- b)
+esSuperMaduro :: Condicion
+esSuperMaduro unChico = esMayor unChico && (tieneHabilidad  "manejar" unChico)
+
+esMayor :: Chico -> Bool
+esMayor = (> 18) . edad
+
+-- 2)
+
+data Chica = Chica {
+    nombreChica :: String,
+    condicion :: Condicion
+}
+
+-- a)
+
+quienConquistaA :: Chica -> [Chico] -> Chico
+quienConquistaA unaChica losPretendientes 
+  | null candidatos = last losPretendientes
+  | otherwise       = head candidatos
+  where
+    candidatos = filter (condicion unaChica) losPretendientes
+
+-- b)
+
+martu :: Chica
+martu = Chica "Martina" (tieneHabilidad "cocinar")
+
+-- Ejemplo consulta :
+-- quienConquistaA martu [timmy, mati, ale]
 
