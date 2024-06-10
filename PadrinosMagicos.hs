@@ -109,3 +109,27 @@ martu = Chica "Martina" (tieneHabilidad "cocinar")
 -- Ejemplo consulta :
 -- quienConquistaA martu [timmy, mati, ale]
 
+-----------
+--Parte C--
+-----------
+
+infractoresDeDaRules :: [Chico] -> [String]
+infractoresDeDaRules = map nombre . filter (tieneDeseoProhibido)
+
+tieneDeseoProhibido :: Chico -> Bool
+tieneDeseoProhibido = any esProhibida . take 5 . habilidades . muffinMagico
+
+esProhibida :: Habilidad -> Bool
+esProhibida unaHabilidad = elem unaHabilidad habilidadesProhibidas
+
+habilidadesProhibidas :: [Habilidad]
+habilidadesProhibidas = ["enamorar" , "matar" , "dominar el mundo"]
+
+-----------
+--Parte D--
+-----------
+
+-- Composicion se utiliza en casi todas las funciones
+-- Orden superior se utiliza en las genericas como mapEdad, mapHabilidades
+-- Aplicacion parcial en esMayor x ejemplo
+-- Listas infinitas en jugarNeedForSpeeds
