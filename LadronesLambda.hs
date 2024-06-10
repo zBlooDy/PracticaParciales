@@ -132,3 +132,9 @@ herramientasNoUtilizadas herramientasSinUsar unLadron = unLadron {herramientas =
 atraco :: Ladron -> [Cofre] -> Ladron
 atraco = foldl robarCofre 
 
+-- d)
+
+-- Si hay una lista infinita de herramientas, la expresion nunca va a terminar
+
+-- Si hay una lista infinita de cofres, pero el ladron no tiene herramientas, siempre va a mostrar el mismo ladron sin modificaciones
+
