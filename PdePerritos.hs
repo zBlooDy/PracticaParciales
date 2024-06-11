@@ -120,4 +120,33 @@ perrosCansados unaGuarderia = filter (estaCansado . realizarRutinaDe unaGuarderi
 estaCansado :: Perrito -> Bool
 estaCansado = (< 5) . energia
 
+-----------
+--Parte C--
+-----------
+
+pi :: Perrito
+pi = Perrito "Labrador" infinitosJuguetes 314 159
+
+infinitosJuguetes :: [Juguete]
+infinitosJuguetes = map (soguitasInfinitas) [1..]
+
+soguitasInfinitas :: Int -> Juguete
+soguitasInfinitas unNumero = "soguita " ++ show unNumero
+
+-- 1)
+-- esExtravagente pi
+-- Si, esto es posible saber debido a la evaluacion diferida de Haskell. Esto significa que no se evalua lo que no es necesario, en este caso solo importa la raza de pi y no los juguetes infinitos.
+
+-- 2)
+-- a) Seria imposible encontrar el huesito en la lista infinita de juguetes favoritos que son soguitas infinitas.
+-- b) Si, en el caso de pasar por la guarderia, la pelota se agrega al inicio. Entonces encontraria ese elemento y luego dejaria de analizar la lista infinita
+-- c) Si, le llevara su tiempo buscarlo en la lista infinita pero lo va a encontrar, despues deja de analizar la lista infinita (Evaluacion diferida).
+
+-- 3)
+-- realizarRutinaDe guarderiaPdePerritos pi
+-- Si, es posible que realice una rutina y va a devolver como queda despues de la rutina Pi, mostrando sus infinitos juguetes
+
+
+-- 4)
+-- Se le agrega el hueso como primer elemento y pi queda igual. 
 
