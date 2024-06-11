@@ -18,6 +18,11 @@ type Actividad = (Ejercicio, Tiempo)
 type Tiempo = Int
 type Ejercicio = Perrito -> Perrito
 
+tiempoActividad :: Actividad -> Tiempo
+tiempoActividad = snd
+
+ejercicioDeActividad :: Actividad -> Ejercicio
+ejercicioDeActividad = fst
 -- <- Mapeos ->
 
 mapEnergia :: (Int -> Int) -> Perrito -> Perrito
@@ -86,3 +91,33 @@ guarderiaPdePerritos = Guarderia "Guarderia P de Perritos" [(jugar , 10) , (ladr
 -----------
 --Parte B--
 -----------
+
+puedeEstarEnGuarderia :: Perrito -> Guarderia -> Bool
+puedeEstarEnGuarderia unPerrito unaGuarderia = tiempoEnGuarderia unPerrito > tiempoRutina unaGuarderia
+
+tiempoRutina :: Guarderia -> Tiempo
+tiempoRutina = sum . map tiempoActividad . rutina
+
+
+esResponsable :: Perrito -> Bool
+esResponsable = tieneMasDeTresJuguetes . diaDeCampo
+
+tieneMasDeTresJuguetes :: Perrito -> Bool
+tieneMasDeTresJuguetes = (> 3) . length . juguetesFavoritos
+
+
+realizarRutinaDe :: Guarderia -> Perrito -> Perrito
+realizarRutinaDe unaGuarderia unPerrito
+  | puedeEstarEnGuarderia unPerrito unaGuarderia = foldr ($) unPerrito (ejerciciosGuarderia)
+  | otherwise                              = unPerrito
+  where
+    ejerciciosGuarderia = map ejercicioDeActividad (rutina unaGuarderia)
+
+
+perrosCansados :: Guarderia -> [Perrito] -> [Perrito]
+perrosCansados unaGuarderia = filter (estaCansado . realizarRutinaDe unaGuarderia)
+
+estaCansado :: Perrito -> Bool
+estaCansado = (< 5) . energia
+
+
