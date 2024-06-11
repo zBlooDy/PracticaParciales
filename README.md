@@ -43,3 +43,5 @@ Enunciado Padrinos Magicos: https://drive.google.com/file/d/18c1VXjtvMaJeIIHE-gM
 Enunciado Ladrones Lambda: https://docs.google.com/document/d/1J6lNIF-GhMkDy0SvPZXjSMgs7Z9XX-Dh2slZLwmB5kA/edit?usp=sharing
 
 Enunciado Puños de Puria : https://docs.google.com/document/d/1Dtd4n1fYLdsSBPyHnFsSvctCrwBE1zkevGwThkTDAXU/edit
+
+Enunciado P de Perritos : https://docs.google.com/document/d/19CPV3G8aLJs5AQ6QUuOxlqOLClKxi_Fy7cc3X53rFSw/edit
