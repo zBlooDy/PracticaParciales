@@ -61,8 +61,11 @@ concierto(mikuFest, argentina, 100, pequenio(4)).
 %% Punto 4 %%
 %%%%%%%%%%%%%
 
+puedeParticipar(hatsuneMiku, Concierto) :-
+    concierto(Concierto, _, _, _).
+
 puedeParticipar(Vocaloid, Concierto) :-
-    vocaloid(Vocaloid, Cancion),
+    vocaloid(Vocaloid, _),
     concierto(Concierto, _, _, Tipo),
     aptoParaConcierto(Vocaloid, Tipo).
 
@@ -72,11 +75,6 @@ aptoParaConcierto(Vocaloid, gigante(MinimoCanciones, DuracionTotalMinima)) :-
     duracionCanciones(Vocaloid, DuracionTotal),
     DuracionTotal > DuracionTotalMinima.
 
-cantidadCanciones(Vocaloid, Cantidad) :-
-    vocaloid(Vocaloid, _),
-    findall(Cancion, vocaloid(Vocaloid, Cancion), Canciones),
-    length(Canciones, Cantidad).
-
 aptoParaConcierto(Vocaloid, mediano(DuracionTotalMaxima)) :-
     duracionCanciones(Vocaloid, DuracionTotal),
     DuracionTotal < DuracionTotalMaxima.
@@ -85,3 +83,63 @@ aptoParaConcierto(Vocaloid, pequenio(DuracionMinima)) :-
     vocaloid(Vocaloid, Cancion),
     duracionCancion(Cancion, Tiempo),
     Tiempo > DuracionMinima.
+
+cantidadCanciones(Vocaloid, Cantidad) :-
+    vocaloid(Vocaloid, _),
+    findall(Cancion, vocaloid(Vocaloid, Cancion), Canciones),
+    length(Canciones, Cantidad).
+
+
+%%%%%%%%%%%%%
+%% Punto 5 %%
+%%%%%%%%%%%%%
+
+elMasFamoso(Vocaloid) :-
+    nivelDeFama(Vocaloid, Fama),
+    forall(nivelDeFama(_, OtraFama), Fama >= OtraFama).
+
+nivelDeFama(Vocaloid, FamaTotal) :-
+    famaPorConciertos(Vocaloid, FamaConciertos),
+    cantidadCanciones(Vocaloid, CantidadCanciones),
+    FamaTotal is FamaConciertos * CantidadCanciones.
+
+famaPorConciertos(Vocaloid, FamaConciertos) :-
+    vocaloid(Vocaloid, _),
+    findall(Fama, famaDeConcierto(Vocaloid, Fama), FamaDeConciertos),
+    sumlist(FamaDeConciertos, FamaConciertos).
+
+famaDeConcierto(Vocaloid, Fama) :-
+    puedeParticipar(Vocaloid, Concierto),
+    concierto(Concierto, _ , Fama, _).
+
+%%%%%%%%%%%%%
+%% Punto 6 %%
+%%%%%%%%%%%%%
+
+% conoce(Persona, PersonaAQuienConoce)
+
+conoce(megurineLuka, hatsuneMiku).
+conoce(megurineLuka, gumi).
+
+conoce(gumi, seeU).
+
+conoce(seeU, kaito).
+
+unicoDelConcierto(Vocaloid, Concierto) :-
+    puedeParticipar(Vocaloid, Concierto),
+    noAparecenConocidos(Vocaloid, Concierto).
+
+noAparecenConocidos(Vocaloid, Concierto) :-
+    not((puedeParticipar(OtroVocaloid, Concierto), 
+         sonConocidos(Vocaloid, OtroVocaloid))).
+
+
+sonConocidos(Vocaloid, OtroVocaloid) :-
+    conoce(Vocaloid, OtroVocaloid).
+
+sonConocidos(Vocaloid, UnVocaloid) :-
+    conoce(Vocaloid, OtroVocaloid),
+    sonConocidos(OtroVocaloid, UnVocaloid).
+
+
+
