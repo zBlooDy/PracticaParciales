@@ -45,3 +45,9 @@ Enunciado Ladrones Lambda: https://docs.google.com/document/d/1J6lNIF-GhMkDy0SvP
 Enunciado Puños de Puria : https://docs.google.com/document/d/1Dtd4n1fYLdsSBPyHnFsSvctCrwBE1zkevGwThkTDAXU/edit
 
 Enunciado P de Perritos : https://docs.google.com/document/d/19CPV3G8aLJs5AQ6QUuOxlqOLClKxi_Fy7cc3X53rFSw/edit
+
+<h2>Logico</h2> 
+
+Enunciado Aang : https://docs.google.com/document/d/1Tvfqdj4N23O5NGJbbdBQGiDgMssnKvnhv0e4wkHvUpk/edit
+
+Enunciado Logicomilona : https://docs.google.com/document/d/1JbGxnZa6CWHImsjE9SWcx6Ki9vBqQlKRfVX29DQAe9U/edit#heading=h.xc9zmucugiv2
