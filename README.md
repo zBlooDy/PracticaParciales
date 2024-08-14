@@ -51,3 +51,5 @@ Enunciado P de Perritos : https://docs.google.com/document/d/19CPV3G8aLJs5AQ6QUu
 Enunciado Aang : https://docs.google.com/document/d/1Tvfqdj4N23O5NGJbbdBQGiDgMssnKvnhv0e4wkHvUpk/edit
 
 Enunciado Logicomilona : https://docs.google.com/document/d/1JbGxnZa6CWHImsjE9SWcx6Ki9vBqQlKRfVX29DQAe9U/edit#heading=h.xc9zmucugiv2
+
+Enunciado Vocaloid : https://docs.google.com/document/d/1xbXPZnhwyK5FSHR_oaXU4esfkTd2S-jf3rH1XLw864M/edit
