@@ -53,3 +53,5 @@ Enunciado Aang : https://docs.google.com/document/d/1Tvfqdj4N23O5NGJbbdBQGiDgMss
 Enunciado Logicomilona : https://docs.google.com/document/d/1JbGxnZa6CWHImsjE9SWcx6Ki9vBqQlKRfVX29DQAe9U/edit#heading=h.xc9zmucugiv2
 
 Enunciado Vocaloid : https://docs.google.com/document/d/1xbXPZnhwyK5FSHR_oaXU4esfkTd2S-jf3rH1XLw864M/edit
+
+Enunciado El Kiosquito : https://docs.google.com/document/d/1RNgFMlSqOKiwe9SEi1U2cQjCmdFfWNflqycSfp7Qa-w/edit#heading=h.8z5fk89ui0rg
