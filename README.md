@@ -55,3 +55,5 @@ Enunciado Logicomilona : https://docs.google.com/document/d/1JbGxnZa6CWHImsjE9SW
 Enunciado Vocaloid : https://docs.google.com/document/d/1xbXPZnhwyK5FSHR_oaXU4esfkTd2S-jf3rH1XLw864M/edit
 
 Enunciado El Kiosquito : https://docs.google.com/document/d/1RNgFMlSqOKiwe9SEi1U2cQjCmdFfWNflqycSfp7Qa-w/edit#heading=h.8z5fk89ui0rg
+
+Enunciado Afirmativo : https://docs.google.com/document/d/1v56pWG_Q9tIA-QdaMk4jilz_JLs5TGzIT7qJTCpDOI8/edit
