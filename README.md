@@ -59,3 +59,5 @@ Enunciado El Kiosquito : https://docs.google.com/document/d/1RNgFMlSqOKiwe9SEi1U
 Enunciado Afirmativo : https://docs.google.com/document/d/1v56pWG_Q9tIA-QdaMk4jilz_JLs5TGzIT7qJTCpDOI8/edit
 
 Enunciado Musica Para Todos : https://docs.google.com/document/d/14o9U6J6W2kifPqGuCYI1WtQCB_fXGBaK_qFJy-Gm1sQ/edit?usp=sharing
+
+Enunciado Los Magios : https://docs.google.com/document/d/1cf4ebrJWsKBhb5wqJiEfnPoiqFKjQNSlHovY5Yo2Hj0/edit
