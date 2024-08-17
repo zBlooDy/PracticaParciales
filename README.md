@@ -57,3 +57,5 @@ Enunciado Vocaloid : https://docs.google.com/document/d/1xbXPZnhwyK5FSHR_oaXU4es
 Enunciado El Kiosquito : https://docs.google.com/document/d/1RNgFMlSqOKiwe9SEi1U2cQjCmdFfWNflqycSfp7Qa-w/edit#heading=h.8z5fk89ui0rg
 
 Enunciado Afirmativo : https://docs.google.com/document/d/1v56pWG_Q9tIA-QdaMk4jilz_JLs5TGzIT7qJTCpDOI8/edit
+
+Enunciado Musica Para Todos : https://docs.google.com/document/d/14o9U6J6W2kifPqGuCYI1WtQCB_fXGBaK_qFJy-Gm1sQ/edit?usp=sharing
