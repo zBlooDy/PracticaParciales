@@ -82,16 +82,16 @@ tuvoQueSoportar(Persona, FechaAsado) :-
 % %% Punto 3 %%
 % %%%%%%%%%%%%%
 
-calorias(Comida, Calorias) :-
+calorias(NombreComida, Calorias) :-
     comida(Comida),
-    caloriasSegunComida(Comida, Calorias).
+    caloriasSegunComida(Comida, Calorias, NombreComida).
 
-caloriasSegunComida(ensalada(_, Ingredientes), Calorias) :-
+caloriasSegunComida(ensalada(Nombre, Ingredientes), Calorias, Nombre) :-
     length(Ingredientes, Calorias).
 
-caloriasSegunComida(achura(_, Calorias), Calorias).
+caloriasSegunComida(achura(Nombre, Calorias), Calorias, Nombre).
 
-caloriasSegunComida(morfi(_), 200).
+caloriasSegunComida(morfi(Nombre), 200, Nombre).
 
 % %%%%%%%%%%%%%
 % %% Punto 4 %%
@@ -162,4 +162,5 @@ comidaRica(ensalada(_, Ingredientes)) :-
 
 comidaRica(achura(chori, _)).
 comidaRica(achura(morci, _)).
+
 
