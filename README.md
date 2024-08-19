@@ -48,6 +48,8 @@ Enunciado P de Perritos : https://docs.google.com/document/d/19CPV3G8aLJs5AQ6QUu
 
 <h2>Logico</h2> 
 
+![Prolog](https://files.oaiusercontent.com/file-KumhtBSWI8e29Z1eAxsG794f?se=2024-08-19T19%3A18%3A49Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D240bd4a3-cef7-4630-b4ae-1226602e1a6c.webp&sig=16Wfp87kmi6o9pxX208lz7n8ge0F95bNuFKVg7kei2Q%3D)
+
 Enunciado Aang : https://docs.google.com/document/d/1Tvfqdj4N23O5NGJbbdBQGiDgMssnKvnhv0e4wkHvUpk/edit
 
 Enunciado Logicomilona : https://docs.google.com/document/d/1JbGxnZa6CWHImsjE9SWcx6Ki9vBqQlKRfVX29DQAe9U/edit#heading=h.xc9zmucugiv2
