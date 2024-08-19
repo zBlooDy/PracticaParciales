@@ -61,3 +61,7 @@ Enunciado Afirmativo : https://docs.google.com/document/d/1v56pWG_Q9tIA-QdaMk4ji
 Enunciado Musica Para Todos : https://docs.google.com/document/d/14o9U6J6W2kifPqGuCYI1WtQCB_fXGBaK_qFJy-Gm1sQ/edit?usp=sharing
 
 Enunciado Los Magios : https://docs.google.com/document/d/1cf4ebrJWsKBhb5wqJiEfnPoiqFKjQNSlHovY5Yo2Hj0/edit
+
+Enunciado Asadito : https://drive.google.com/file/d/16X4eXajSB6sMF-zMWmgrky7jtridl9ZH/view
+
+Enunciado Ratatouille : https://docs.google.com/document/d/1ILv3wGJz4F75nXlnTK0CcCVaRK-wbcMPiBFZGUcrXWs/edit
