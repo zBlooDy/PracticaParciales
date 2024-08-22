@@ -69,3 +69,5 @@ Enunciado Asadito : https://drive.google.com/file/d/16X4eXajSB6sMF-zMWmgrky7jtri
 Enunciado Ratatouille : https://docs.google.com/document/d/1ILv3wGJz4F75nXlnTK0CcCVaRK-wbcMPiBFZGUcrXWs/edit
 
 Enunciado Pulp Fiction : https://docs.google.com/document/d/15mo_2391atBqMjcYzLtKvGG6JiPzjbeyEGVlwZjv4B8/edit#heading=h.qr1tbl1vrwzf
+
+Enunciado PreViaje : https://www.utnianos.com.ar/foro/attachment.php?aid=22361
