@@ -74,4 +74,4 @@ Enunciado PreViaje : https://www.utnianos.com.ar/foro/attachment.php?aid=22361
 
 Enunciado Cafe Veloz : https://drive.google.com/file/d/1SynnBsG3gj-L_9fYzvEFIFYfTV_hCF56/view
 
-Enunciado Prode : https://www.utnianos.com.ar/foro/attachment.php?aid=22492
+Enunciado Supermercados : https://docs.google.com/document/d/19eQfMO7uwLZ-HjfX43l7fmDNWpfo3CIkNQSlIRKdqQA/edit
