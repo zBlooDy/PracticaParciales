@@ -103,3 +103,38 @@ precioProducto(Producto, Precio) :-
 precioProducto(Producto, PrecioUnidad) :-
     precioUnitario(Producto, PrecioUnidad),
     not(descuento(Producto, _)).
+
+% %%%%%%%%%%%%%
+% %% Punto 4 %%
+% %%%%%%%%%%%%%
+
+clienteFiel(Cliente, Marca) :-
+    compro(Cliente, Producto, _),
+    marcaProducto(Producto, Marca),
+    forall(compro(Cliente, OtroProducto, _), marcaProducto(OtroProducto, Marca)).
+
+
+% %%%%%%%%%%%%%
+% %% Punto 5 %%
+% %%%%%%%%%%%%%
+
+% duenio(MarcaDuenia, OtraMarca)
+duenio(laSerenisima, gandara).
+duenio(gandara, vacalin).
+
+provee(Empresa, Productos) :-
+    productoDe(Empresa, _),
+    findall(Producto, productoDe(Empresa, Producto), Productos).
+
+productoDe(Empresa, Producto) :-
+    producto(Producto),
+    proveeLaEmpresa(Producto, Empresa).
+
+proveeLaEmpresa(Producto, Empresa) :-
+    marcaProducto(Producto, Empresa).
+
+proveeLaEmpresa(Producto, Empresa) :-
+    duenio(Empresa, Marca),
+    marcaProducto(Producto, Marca).
+
+
