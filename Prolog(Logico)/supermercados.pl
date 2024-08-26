@@ -4,7 +4,7 @@ primeraMarca(gallo).
 primeraMarca(vienisima).
 
 %precioUnitario(Producto,Precio)
-%donde Producto puede ser arroz(Marca), lacteo(Marca,TipoDeLacteo), salchicas(Marca,Cantidad)
+%donde Producto puede ser arroz(Marca), lacteo(Marca,TipoDeLacteo), salchichas(Marca,Cantidad)
 precioUnitario(arroz(gallo),25.10).
 precioUnitario(lacteo(laSerenisima,leche), 6.00).
 precioUnitario(lacteo(laSerenisima,crema), 4.00).
@@ -43,6 +43,7 @@ descuento(Producto, Descuento) :-
     forall(precioUnitario(_, OtroPrecio), PrecioMayor >= OtroPrecio),
     Descuento is PrecioMayor * 0.05.
 
+
 %compro(Cliente,Producto,Cantidad)
 compro(juan,lacteo(laSerenisima,crema),2).
 
@@ -54,3 +55,26 @@ compro(juan,lacteo(laSerenisima,crema),2).
 producto(Producto) :-
     precioUnitario(Producto, _).
 
+% %%%%%%%%%%%%%
+% %% Punto 2 %%
+% %%%%%%%%%%%%%
+
+
+cliente(Cliente) :-
+    compro(Cliente, _, _).
+
+compradorCompulsivo(Cliente) :-
+    cliente(Cliente),
+    forall(compro(Cliente, Producto, _), primeraMarcaConDescuento(Producto)).
+
+primeraMarcaConDescuento(Producto) :-
+    descuento(Producto, _),
+    esPrimeraMarca(Producto).
+
+esPrimeraMarca(Producto) :-
+    marcaProducto(Producto, Marca),
+    primeraMarca(Marca).
+
+marcaProducto(arroz(Marca), Marca).
+marcaProducto(lacteo(Marca, _), Marca).
+marcaProducto(salchichas(Marca, _), Marca).
