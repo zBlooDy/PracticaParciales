@@ -34,8 +34,8 @@ descuento(salchichas(Marca, Cantidad), 0.50) :-
 descuento(lacteo(Marca, leche), 2) :-
     producto(lacteo(Marca, leche)).
 
-descuento(lacteo(Marca, queso(_)), 2) :-
-    producto(lacteo(Marca, queso(_))),
+descuento(lacteo(Marca, queso(Tipo)), 2) :-
+    producto(lacteo(Marca, queso(Tipo))),
     primeraMarca(Marca).
 
 descuento(Producto, Descuento) :-
@@ -59,6 +59,7 @@ producto(Producto) :-
 % %% Punto 2 %%
 % %%%%%%%%%%%%%
 
+% Interpreto que la consigna es que : TODOS los productos que compro UN cliente, sean de primera marca con descuento (Si es al reves basta con invertir el orden).
 
 cliente(Cliente) :-
     compro(Cliente, _, _).
@@ -78,3 +79,27 @@ esPrimeraMarca(Producto) :-
 marcaProducto(arroz(Marca), Marca).
 marcaProducto(lacteo(Marca, _), Marca).
 marcaProducto(salchichas(Marca, _), Marca).
+
+% %%%%%%%%%%%%%
+% %% Punto 3 %%
+% %%%%%%%%%%%%%
+
+totalAPagar(Cliente, Total) :-
+    cliente(Cliente),
+    findall(Precio, precioFinalCompra(Cliente, Precio), Precios),
+    sumlist(Precios, Total).
+
+precioFinalCompra(Cliente, Precio) :-
+    compro(Cliente, Producto, Cantidad),
+    precioProducto(Producto, PrecioProducto),
+    Precio is Cantidad * PrecioProducto.
+
+
+precioProducto(Producto, Precio) :-
+    precioUnitario(Producto, PrecioUnidad),
+    descuento(Producto, Descuento),
+    Precio is PrecioUnidad - (Descuento * PrecioUnidad).
+
+precioProducto(Producto, PrecioUnidad) :-
+    precioUnitario(Producto, PrecioUnidad),
+    not(descuento(Producto, _)).
