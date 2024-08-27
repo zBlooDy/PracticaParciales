@@ -135,6 +135,6 @@ proveeLaEmpresa(Producto, Empresa) :-
 
 proveeLaEmpresa(Producto, Empresa) :-
     duenio(Empresa, Marca),
-    marcaProducto(Producto, Marca).
+    proveeLaEmpresa(Producto, Marca).
 
 
