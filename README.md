@@ -75,3 +75,5 @@ Enunciado PreViaje : https://www.utnianos.com.ar/foro/attachment.php?aid=22361
 Enunciado Cafe Veloz : https://drive.google.com/file/d/1SynnBsG3gj-L_9fYzvEFIFYfTV_hCF56/view
 
 Enunciado Supermercados : https://docs.google.com/document/d/19eQfMO7uwLZ-HjfX43l7fmDNWpfo3CIkNQSlIRKdqQA/edit
+
+Enunciado Improlog : https://docs.google.com/document/d/14prZuXWnPvT_AwR-zX1y0UhOpYl6mfvjqAijUPWuubQ/edit
