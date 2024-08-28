@@ -77,3 +77,5 @@ Enunciado Cafe Veloz : https://drive.google.com/file/d/1SynnBsG3gj-L_9fYzvEFIFYf
 Enunciado Supermercados : https://docs.google.com/document/d/19eQfMO7uwLZ-HjfX43l7fmDNWpfo3CIkNQSlIRKdqQA/edit
 
 Enunciado Improlog : https://docs.google.com/document/d/14prZuXWnPvT_AwR-zX1y0UhOpYl6mfvjqAijUPWuubQ/edit
+
+Enunciado Simulacro : https://docs.google.com/document/d/1XCwQt3f93h_uFzFlTFwf1YFAFglmQg84FyHIM5_Vp0Y/edit#heading=h.1orajatmx606
