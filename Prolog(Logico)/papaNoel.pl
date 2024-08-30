@@ -159,14 +159,14 @@ regalosQueRecibe(Persona, Regalos) :-
 
 recibeRegalo(Persona, Regalo) :-
     quiere(Persona, Regalo),
-    puedePagar(Persona, Regalo).
+    padre(Padre, Persona),
+    puedeCostear(Padre, Persona).
 
-puedePagar(Persona, Regalo) :-
-    capazDePagarSuPadre(Persona, Regalo).
-
-puedePagar(Persona, Regalo) :-
-    not(capazDePagarSuPadre(Persona, Regalo)),
+recibeRegalo(Persona, Regalo) :-
+    padre(Padre, Persona),
+    not(puedeCostear(Padre, Persona)),
     regaloDeCompensacion(Persona, Regalo).
+
 
 regaloDeCompensacion(Persona, parDeMedias) :-
     sePortoBien(Persona).
