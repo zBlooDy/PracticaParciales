@@ -81,3 +81,7 @@ Enunciado Improlog : https://docs.google.com/document/d/14prZuXWnPvT_AwR-zX1y0Uh
 Enunciado Simulacro : https://docs.google.com/document/d/1XCwQt3f93h_uFzFlTFwf1YFAFglmQg84FyHIM5_Vp0Y/edit#heading=h.1orajatmx606
 
 Enunciado Papa Noel : https://docs.google.com/document/d/1toPeBsLjB-vSgUfmKDr0g0WdUIfQ4V8o6Y2XlPU1L-Y/edit?usp=sharing
+
+Enunciado Sueños : https://docs.google.com/document/d/1QcIfJEvOb-oxIFH4jeXEfiVTgMFQa00V0nvF11wIEAg/edit
+
+Enunciado Pokemon : https://docs.google.com/document/d/1_B3EWYrNSmxOmfMxH8Gtpi3ViG5lWfQgwSq_dSWxTOk/edit
