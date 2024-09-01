@@ -85,3 +85,74 @@ enDondePuedeQuedar(hermione, gryffindor).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%% Parte 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+accion(harry, fueraDeCama).
+accion(hermione, irA(tercerPiso)).
+accion(hermione, irA(seccionRestringidaBiblioteca)).
+accion(harry, irA(bosque)).
+accion(harry, irA(tercerPiso)).
+accion(draco, irA(mazmorras)).
+accion(ron, ganarAjedrezMagico).
+accion(hermione, salvarAmigos).
+accion(harry, ganarAVoldemort).
+
+% Punto 4
+accion(hermione, responder(ubicacionBezoar, 20, snapa)).
+accion(hermione, responder(comoLevitarPluma, 25, flitwick)).
+
+
+esDe(hermione, gryffindor).
+esDe(ron, gryffindor).
+esDe(harry, gryffindor).
+esDe(draco, slytherin).
+esDe(luna, ravenclaw).
+
+puntosDeAccion(Mago, Puntaje) :-
+    accion(Mago, Accion),
+    puntos(Accion, Puntaje).
+
+puntos(irA(fueraDeCama), -50).
+puntos(irA(tercerPiso), -75).
+puntos(irA(seccionRestringidaBiblioteca), -10).
+puntos(ganarAjedrezMagico, 50).
+puntos(salvarAmigos, 50).
+puntos(ganarAVoldemort, 60).
+puntos(responder(_, Dificultad, _), Dificultad).
+
+% %%%%%%%%%%%%%
+% %% Punto 1 %%
+% %%%%%%%%%%%%%
+
+buenAlumno(Mago) :-
+    accion(Mago, Accion),
+    not(malaAccion(Accion)).
+
+malaAccion(Accion) :-
+    puntos(Accion, Puntaje),
+    Puntaje < 0.
+
+esRecurrente(Accion) :-
+    accion(Mago, Accion),
+    accion(OtroMago, Accion),
+    Mago \= OtroMago.
+
+% %%%%%%%%%%%%%
+% %% Punto 2 %%
+% %%%%%%%%%%%%%
+
+puntajeTotal(Casa, PuntajeTotal) :-
+    casa(Casa),
+    findall(Puntaje, puntajeParaCasa(Casa, Puntaje), Puntajes),
+    sumlist(Puntajes, PuntajeTotal).
+
+puntajeParaCasa(Casa, Puntaje) :-
+    esDe(Mago, Casa),
+    puntosDeAccion(Mago, Puntaje).
+
+% %%%%%%%%%%%%%
+% %% Punto 3 %%
+% %%%%%%%%%%%%%
+
+casaGanadora(Casa) :-
+    puntajeTotal(Casa, Puntaje),
+    forall(puntajeTotal(_, OtroPuntaje), Puntaje >= OtroPuntaje).
