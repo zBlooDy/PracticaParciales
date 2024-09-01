@@ -86,7 +86,7 @@ enDondePuedeQuedar(hermione, gryffindor).
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%% Parte 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-accion(harry, fueraDeCama).
+accion(harry, irA(fueraDeCama)).
 accion(hermione, irA(tercerPiso)).
 accion(hermione, irA(seccionRestringidaBiblioteca)).
 accion(harry, irA(bosque)).
@@ -112,6 +112,7 @@ puntosDeAccion(Mago, Puntaje) :-
     puntos(Accion, Puntaje).
 
 puntos(irA(fueraDeCama), -50).
+puntos(irA(bosque), -50).
 puntos(irA(tercerPiso), -75).
 puntos(irA(seccionRestringidaBiblioteca), -10).
 puntos(ganarAjedrezMagico, 50).
