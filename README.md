@@ -87,3 +87,5 @@ Enunciado Sueños : https://docs.google.com/document/d/1QcIfJEvOb-oxIFH4jeXEfiVT
 Enunciado Pokemon : https://docs.google.com/document/d/1_B3EWYrNSmxOmfMxH8Gtpi3ViG5lWfQgwSq_dSWxTOk/edit
 
 Enunciado Vacaciones : https://docs.google.com/document/d/1VPvQQQJwVH20ziLA-96Hy1mKXHOQZpCJ9SW2rWOL2Zg/edit
+
+Enunciado Casas de Hogwarts : https://docs.google.com/document/d/e/2PACX-1vR9SBhz2J3lmqcMXOBs1BzSt7N1YWPoIuubAmQxPIOcnbn5Ow9REYt4NXQzOwXXiUaEQ4hfHNEt3_C7/pub
