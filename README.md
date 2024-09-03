@@ -48,7 +48,7 @@ Enunciado P de Perritos : https://docs.google.com/document/d/19CPV3G8aLJs5AQ6QUu
 
 <h2>Logico</h2> 
 
-![Prolog]([[https://files.oaiusercontent.com/file-KumhtBSWI8e29Z1eAxsG794f?se=2024-08-19T19%3A18%3A49Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D240bd4a3-cef7-4630-b4ae-1226602e1a6c.webp&sig=16Wfp87kmi6o9pxX208lz7n8ge0F95bNuFKVg7kei2Q%3D](https://files.adrianistan.eu/SWIPrologLogo.png)](https://miro.medium.com/v2/resize:fit:1400/1*ZT-uARoKO0dd4Wq6tc3W2A.png))
+![Prolog]([[[https://files.oaiusercontent.com/file-KumhtBSWI8e29Z1eAxsG794f?se=2024-08-19T19%3A18%3A49Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D240bd4a3-cef7-4630-b4ae-1226602e1a6c.webp&sig=16Wfp87kmi6o9pxX208lz7n8ge0F95bNuFKVg7kei2Q%3D](https://files.adrianistan.eu/SWIPrologLogo.png)](https://miro.medium.com/v2/resize:fit:1400/1*ZT-uARoKO0dd4Wq6tc3W2A.png)](https://files.oaiusercontent.com/file-KumhtBSWI8e29Z1eAxsG794f?se=2024-09-03T00%3A45%3A09Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D240bd4a3-cef7-4630-b4ae-1226602e1a6c.webp&sig=S5xa%2Bd9gE1WUDGFRyTDwFvJCahY7UZz5E3dJGXxGVXY%3D))
 
 Enunciado Aang : https://docs.google.com/document/d/1Tvfqdj4N23O5NGJbbdBQGiDgMssnKvnhv0e4wkHvUpk/edit
 
@@ -89,3 +89,5 @@ Enunciado Pokemon : https://docs.google.com/document/d/1_B3EWYrNSmxOmfMxH8Gtpi3V
 Enunciado Vacaciones : https://docs.google.com/document/d/1VPvQQQJwVH20ziLA-96Hy1mKXHOQZpCJ9SW2rWOL2Zg/edit
 
 Enunciado Casas de Hogwarts : https://docs.google.com/document/d/e/2PACX-1vR9SBhz2J3lmqcMXOBs1BzSt7N1YWPoIuubAmQxPIOcnbn5Ow9REYt4NXQzOwXXiUaEQ4hfHNEt3_C7/pub
+
+Enunciado Prolog de la Costa : https://docs.google.com/document/d/1SLYz4txoLYAE4b2jM_vc-U_1L2FMYg-p1zdxjKtVTU0/edit#heading=h.6rnhl8528rg3
